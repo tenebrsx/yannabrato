@@ -56,7 +56,7 @@ export default function AdminSidebar() {
                     <div className="p-6 border-b border-white/5 flex items-center justify-between">
                         <div className="flex items-center gap-3">
                             <Flame className="h-6 w-6 text-[#90A4AE]" />
-                            <h1 className="text-lg font-semibold text-[#D5E8D4]">Yanna Brato</h1>
+                            <h1 className="text-lg font-semibold text-[#D5E8D4]">Yana Beato</h1>
                         </div>
                     </div>
                     {/* Navigation */}

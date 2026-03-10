@@ -68,7 +68,7 @@ export default function Header({ categories = [] }: HeaderProps) {
                         className="text-2xl font-sans font-bold tracking-tighter hover:opacity-70 transition-opacity"
                         onClick={() => setIsMenuOpen(false)}
                     >
-                        yanna brato
+                        yana beato
                     </Link>
                 </div>
 

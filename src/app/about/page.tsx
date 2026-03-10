@@ -11,7 +11,7 @@ export default function AboutPage() {
                     <div className="md:col-span-8 md:col-start-5 text-xl md:text-3xl font-light leading-relaxed">
                         <div>
                             <p className="text-xl md:text-3xl font-sans font-medium leading-relaxed text-zinc-300">
-                                Yanna Brato es el espacio creativo de un director con base en la República Dominicana, enfocado en capturar la esencia vibrante y auténtica del Caribe.
+                                Yana Beato es el espacio creativo de un director con base en la República Dominicana, enfocado en capturar la esencia vibrante y auténtica del Caribe.
                             </p>
                         </div>
                         <p>
@@ -34,7 +34,7 @@ export default function AboutPage() {
                         <div>
                             <h3 className="font-mono text-xs text-gray-500 mb-4 uppercase">Directo</h3>
                             <div className="flex flex-col gap-4">
-                                <a href="mailto:hola@yannabrato.com" className="font-sans text-xl hover:text-accent transition-colors block">hola@yannabrato.com</a>
+                                <a href="mailto:hola@yanabeato.com" className="font-sans text-xl hover:text-accent transition-colors block">hola@yanabeato.com</a>
                                 <a href="#" className="font-sans text-xl hover:text-accent transition-colors block">Instagram</a>
                                 <a href="#" className="font-sans text-xl hover:text-accent transition-colors block">Vimeo</a>
                             </div>

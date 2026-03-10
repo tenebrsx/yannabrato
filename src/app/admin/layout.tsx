@@ -2,7 +2,7 @@ import "../globals.css";
 import { AuthProvider } from "@/context/AuthContext";
 
 export const metadata = {
-    title: "Admin Panel | Yanna Brato",
+    title: "Admin Panel | Yana Beato",
     description: "Manage portfolio projects and settings",
 };
 

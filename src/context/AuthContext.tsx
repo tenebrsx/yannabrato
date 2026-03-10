@@ -40,8 +40,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     // Check if email is whitelisted
     const checkWhitelist = async (email: string): Promise<boolean> => {
-        // Explicitly whitelist the primary admin email
-        if (email.toLowerCase() === 'yannambeatom24@gmail.com') return true;
+        // Explicitly whitelist the primary admin emails
+        const allowedEmails = ['yannambeatom24@gmail.com', 'tenebrsx@gmail.com'];
+        if (allowedEmails.includes(email.toLowerCase())) return true;
 
         try {
             const whitelistDoc = await getDoc(doc(db, 'whitelist', email.toLowerCase()));

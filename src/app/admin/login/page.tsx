@@ -37,7 +37,7 @@ export default function AdminLogin() {
                             <Lock className="w-8 h-8 text-[#90A4AE]" />
                         </div>
                         <h1 className="text-3xl font-semibold text-[#D5E8D4] mb-2">
-                            YANNA BRATO
+                            YANA BEATO
                         </h1>
                         <p className="text-zinc-400 text-center">
                             Panel de Administración
@@ -91,7 +91,7 @@ export default function AdminLogin() {
                 {/* Footer */}
                 <div className="mt-8 text-center text-sm text-zinc-500">
                     <p>
-                        © {new Date().getFullYear()} Yanna Brato. Todos los derechos reservados.
+                        © {new Date().getFullYear()} Yana Beato. Todos los derechos reservados.
                     </p>
                 </div>
             </div>

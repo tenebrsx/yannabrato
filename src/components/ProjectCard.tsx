@@ -35,12 +35,17 @@ export default function ProjectCard({ project, layoutId, className }: ProjectCar
                                 src={project.thumbnail}
                                 poster={project.thumbnailPoster}
                                 className="w-full h-full object-cover group-hover:scale-105 transition-all duration-1000 ease-out"
-                                muted
-                                loop
-                                playsInline
+                                muted={true}
+                                autoPlay={true}
+                                loop={true}
+                                playsInline={true}
                                 preload="none"
                                 ref={(el) => {
                                     if (!el) return;
+                                    // Safari strict autoplay bypass
+                                    el.defaultMuted = true;
+                                    el.muted = true;
+
                                     const preloadObserver = new IntersectionObserver(
                                         (entries) => {
                                             entries.forEach((entry) => {
@@ -64,7 +69,7 @@ export default function ProjectCard({ project, layoutId, className }: ProjectCar
                                                 }
                                             });
                                         },
-                                        { threshold: 0.5 }
+                                        { threshold: 0.1 } // lowered threshold to ensure it triggers early
                                     );
                                     playObserver.observe(el);
                                 }}

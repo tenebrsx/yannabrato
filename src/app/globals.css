@@ -5,8 +5,8 @@
     --background: #000000;
     --foreground: #D5E8D4; /* Light green with greenish undertone */
     --accent: #90A4AE; /* Grayish green */
-    --font-sans: var(--font-inter);
-    --font-mono: var(--font-roboto-mono);
+    --font-sans: var(--font-oswald);
+    --font-mono: var(--font-inter);
   }
 
   body {
@@ -37,5 +37,5 @@
   --color-foreground: var(--foreground);
   --color-accent: var(--accent);
   --font-sans: var(--font-oswald), sans-serif;
-  --font-mono: var(--font-roboto-mono), monospace;
+  --font-mono: var(--font-inter), sans-serif;
 }

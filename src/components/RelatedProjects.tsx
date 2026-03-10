@@ -5,15 +5,8 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import Link from "next/link";
 import { motion } from "framer-motion";
-
-interface Project {
-    id: string;
-    title: string;
-    slug: string;
-    category: string;
-    year: string;
-    thumbnail: string;
-}
+import ProjectCard from "./ProjectCard";
+import { Project } from "@/lib/data";
 
 interface RelatedProjectsProps {
     currentProjectId: string;
@@ -31,8 +24,8 @@ export default function RelatedProjects({ currentProjectId }: RelatedProjectsPro
                     ...doc.data()
                 })) as Project[];
 
-                // Filter out current project and random shuffle
-                const others = allProjects.filter(p => p.id !== currentProjectId);
+                // Filter out current project, drafts, and random shuffle
+                const others = allProjects.filter(p => p.id !== currentProjectId && p.published !== false);
                 const shuffled = others.sort(() => 0.5 - Math.random());
 
                 // Take top 3
@@ -56,27 +49,8 @@ export default function RelatedProjects({ currentProjectId }: RelatedProjectsPro
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {projects.map((project, index) => (
-                    <Link href={`/project?slug=${project.slug}`} key={project.id} className="block group">
-                        <div className="aspect-video bg-zinc-900 overflow-hidden rounded-sm mb-3">
-                            <motion.img
-                                initial={{ scale: 1.1 }}
-                                whileHover={{ scale: 1 }}
-                                transition={{ duration: 0.6 }}
-                                src={project.thumbnail}
-                                alt={project.title}
-                                className="w-full h-full object-cover"
-                            />
-                        </div>
-                        <div className="flex justify-between items-baseline">
-                            <h4 className="font-sans font-bold text-lg uppercase text-[#D5E8D4] group-hover:text-zinc-400 transition-colors">
-                                {project.title}
-                            </h4>
-                            <span className="font-mono text-xs text-zinc-600 uppercase">
-                                {project.category}
-                            </span>
-                        </div>
-                    </Link>
+                {projects.map((project) => (
+                    <ProjectCard key={project.id} project={project} />
                 ))}
             </div>
         </div>

@@ -14,6 +14,7 @@ interface Project {
     thumbnail: string;
     videoUrl?: string | null;
     slug: string;
+    published?: boolean;
 }
 
 export default function CategoryClient({ category }: { category: string }) {
@@ -29,8 +30,8 @@ export default function CategoryClient({ category }: { category: string }) {
                     ...doc.data()
                 })) as Project[];
 
-                // Filter by category slug
-                const filtered = allProjects.filter(p => slugify(p.category) === category);
+                // Filter by category slug and published status
+                const filtered = allProjects.filter(p => slugify(p.category) === category && p.published !== false);
                 setProjects(filtered);
             } catch (error) {
                 console.error("Error fetching projects:", error);

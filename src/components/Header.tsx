@@ -36,24 +36,9 @@ export default function Header({ categories = [] }: HeaderProps) {
     return (
         <>
             <header className="fixed top-0 left-0 w-full z-50 px-4 md:px-10 py-6 flex justify-between items-start mix-blend-difference text-[#D5E8D4]">
-                {/* Desktop Navigation - Dynamic Categories */}
-                <nav className="hidden md:flex flex-col gap-1 font-mono text-sm">
-                    {categories.map((item) => (
-                        <Link
-                            key={item.href}
-                            href={item.href}
-                            className="uppercase hover:text-accent transition-colors"
-                            onMouseEnter={handleMouseEnter}
-                            onMouseLeave={handleMouseLeave}
-                        >
-                            {item.label}
-                        </Link>
-                    ))}
-                </nav>
-
-                {/* Mobile Menu Trigger */}
+                {/* Left: Menu Trigger (All devices) */}
                 <button
-                    className="md:hidden uppercase font-mono text-xs z-50 relative"
+                    className="uppercase font-mono text-xs z-50 relative tracking-widest hover:text-accent transition-colors"
                     onClick={toggleMenu}
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
@@ -68,23 +53,8 @@ export default function Header({ categories = [] }: HeaderProps) {
                         className="text-2xl font-sans font-bold tracking-tighter hover:opacity-70 transition-opacity"
                         onClick={() => setIsMenuOpen(false)}
                     >
-                        yana beato
+                        yanna beato
                     </Link>
-                </div>
-
-                {/* Desktop Search / Extras */}
-                <div className="hidden md:flex flex-col gap-1 font-mono text-sm text-right">
-                    {staticLinks.map((item) => (
-                        <Link
-                            key={item.href}
-                            href={item.href}
-                            className="uppercase hover:text-accent transition-colors"
-                            onMouseEnter={handleMouseEnter}
-                            onMouseLeave={handleMouseLeave}
-                        >
-                            {item.label}
-                        </Link>
-                    ))}
                 </div>
             </header>
 

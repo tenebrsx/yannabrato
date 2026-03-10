@@ -27,6 +27,7 @@ interface Project {
     videoUrl?: string;
     credits?: { role: string; name: string }[];
     gallery?: string[];
+    published?: boolean;
 }
 
 function EditContent() {
@@ -47,6 +48,7 @@ function EditContent() {
         videoUrl: "",
         credits: [] as { role: string; name: string }[],
         gallery: [] as string[],
+        published: true, // Default to true if not present
     });
 
     // Temp state for new gallery image input
@@ -79,6 +81,7 @@ function EditContent() {
                     videoUrl: found.videoUrl || "",
                     credits: found.credits || [],
                     gallery: found.gallery || [],
+                    published: found.published !== false, // Defaults to true if undefined
                 });
             } else {
                 console.error("No such project!");
@@ -186,6 +189,30 @@ function EditContent() {
                             {/* Form */}
                             <form onSubmit={handleSubmit} className="space-y-8">
                                 <div className="space-y-4">
+                                    <div className="flex items-center justify-between p-4 bg-zinc-900/50 rounded-lg border border-zinc-800">
+                                        <div>
+                                            <Label className="text-zinc-300 text-base">Estado de Publicación</Label>
+                                            <p className="text-sm text-zinc-500">
+                                                {formData.published 
+                                                    ? "El proyecto está público y visible." 
+                                                    : "El proyecto está guardado como borrador (oculto)."}
+                                            </p>
+                                        </div>
+                                        <button
+                                            type="button"
+                                            onClick={() => setFormData(prev => ({ ...prev, published: !prev.published }))}
+                                            className={`relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-[#D5E8D4] focus:ring-offset-2 focus:ring-offset-black ${
+                                                formData.published ? 'bg-orange-500' : 'bg-zinc-700'
+                                            }`}
+                                        >
+                                            <span
+                                                className={`pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out ${
+                                                    formData.published ? 'translate-x-5' : 'translate-x-0'
+                                                }`}
+                                            />
+                                        </button>
+                                    </div>
+
                                     <div className="space-y-2">
                                         <Label htmlFor="title" className="text-zinc-300">Título del Proyecto</Label>
                                         <Input

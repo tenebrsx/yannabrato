@@ -20,8 +20,8 @@ interface Project {
     credits?: { role: string; name: string }[] | null;
     description?: string | null;
     createdAt?: string;
-    updatedAt?: string;
     gallery?: string[] | null;
+    published?: boolean;
 }
 
 function ProjectViewer() {
@@ -52,6 +52,12 @@ function ProjectViewer() {
             }
 
             const found = { id: querySnapshot.docs[0].id, ...querySnapshot.docs[0].data() } as Project;
+            
+            if (found.published === false) {
+                notFound();
+                return;
+            }
+
             setProject(found);
         } catch (error) {
             console.error("Error fetching project:", error);

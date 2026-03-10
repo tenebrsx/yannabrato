@@ -5,6 +5,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import ProjectGrid from "@/components/ProjectGrid";
 import { motion } from "framer-motion";
+import ContactForm from "@/components/ContactForm";
 
 interface Project {
   id: string;
@@ -19,6 +20,7 @@ interface Project {
   description?: string | null;
   createdAt?: string;
   updatedAt?: string;
+  published?: boolean;
 }
 
 export default function Home() {
@@ -34,7 +36,11 @@ export default function Home() {
     try {
       const projectsSnap = await getDocs(collection(db, "projects"));
       const projectsData = projectsSnap.docs.map(doc => ({ id: doc.id, ...doc.data() })) as Project[];
-      setProjects(projectsData);
+      
+      // Filter out drafts from the public view
+      const publishedProjects = projectsData.filter(p => p.published !== false);
+      
+      setProjects(publishedProjects);
     } catch (error) {
       console.error("Error fetching data:", error);
     } finally {
@@ -48,10 +54,25 @@ export default function Home() {
     return ["Todos", ...Array.from(cats).sort()];
   }, [projects]);
 
-  // Filter projects by active category
+  // Filter projects by active category and prioritize video projects on full view
   const filteredProjects = useMemo(() => {
-    if (activeCategory === "Todos") return projects;
-    return projects.filter(p => p.category === activeCategory);
+    let result = projects;
+
+    if (activeCategory === "Todos") {
+      // Prioritize projects that have a valid videoUrl loop
+      result = [...projects].sort((a, b) => {
+        const aHasVideo = !!(a.videoUrl && a.videoUrl.trim() !== "");
+        const bHasVideo = !!(b.videoUrl && b.videoUrl.trim() !== "");
+        
+        if (aHasVideo && !bHasVideo) return -1;
+        if (!aHasVideo && bHasVideo) return 1;
+        return 0;
+      });
+    } else {
+      result = projects.filter(p => p.category === activeCategory);
+    }
+    
+    return result;
   }, [projects, activeCategory]);
 
   return (
@@ -110,6 +131,45 @@ export default function Home() {
             </p>
           </div>
         )}
+
+        {/* Contact Section at bottom */}
+        <motion.section
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-12 gap-10 mt-32 border-t border-white/10 pt-20 text-[#D5E8D4]"
+        >
+            <div className="md:col-span-3">
+                <h2 className="font-mono text-xs uppercase text-zinc-500 tracking-widest">Contacto</h2>
+            </div>
+            <div className="md:col-span-8 md:col-start-5 grid grid-cols-1 md:grid-cols-2 gap-12">
+                {/* Contact Info */}
+                <div className="space-y-6">
+                    <div>
+                        <h3 className="font-mono text-xs text-zinc-500 mb-3 uppercase tracking-wider">Email</h3>
+                        <a href="mailto:yannambeatom24@gmail.com" className="font-sans text-lg hover:text-[#D5E8D4] transition-colors text-zinc-300">
+                            yannambeatom24@gmail.com
+                        </a>
+                    </div>
+                    <div>
+                        <h3 className="font-mono text-xs text-zinc-500 mb-3 uppercase tracking-wider">Instagram</h3>
+                        <a href="https://instagram.com/myvisual.experience" target="_blank" rel="noopener noreferrer" className="font-sans text-lg hover:text-[#D5E8D4] transition-colors text-zinc-300">
+                            @myvisual.experience
+                        </a>
+                    </div>
+                    <div>
+                        <h3 className="font-mono text-xs text-zinc-500 mb-3 uppercase tracking-wider">Teléfono</h3>
+                        <a href="tel:+18098583747" className="font-sans text-lg hover:text-[#D5E8D4] transition-colors text-zinc-300">
+                            809-858-3747
+                        </a>
+                    </div>
+                </div>
+
+                {/* Contact Form Component */}
+                <ContactForm />
+            </div>
+        </motion.section>
+
       </div>
     </main>
   );

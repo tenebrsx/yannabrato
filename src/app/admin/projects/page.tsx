@@ -31,15 +31,18 @@ interface Project {
     thumbnail: string;
     description?: string;
     createdAt?: string;
+    published?: boolean;
 }
 
 type ViewMode = "grid" | "list";
+type StatusFilter = "all" | "published" | "draft";
 
 export default function ProjectsPage() {
     const [projects, setProjects] = useState<Project[]>([]);
     const [loading, setLoading] = useState(true);
     const [searchQuery, setSearchQuery] = useState("");
     const [categoryFilter, setCategoryFilter] = useState<string>("all");
+    const [statusFilter, setStatusFilter] = useState<StatusFilter>("all");
     const [viewMode, setViewMode] = useState<ViewMode>("grid");
     const router = useRouter();
 
@@ -80,7 +83,14 @@ export default function ProjectsPage() {
         const matchesSearch = project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
             project.description?.toLowerCase().includes(searchQuery.toLowerCase());
         const matchesCategory = categoryFilter === "all" || project.category === categoryFilter;
-        return matchesSearch && matchesCategory;
+        
+        // published is true by default if undefined
+        const isPublished = project.published !== false;
+        const matchesStatus = statusFilter === "all" || 
+                             (statusFilter === "published" && isPublished) || 
+                             (statusFilter === "draft" && !isPublished);
+        
+        return matchesSearch && matchesCategory && matchesStatus;
     });
 
     // Get unique categories
@@ -120,7 +130,30 @@ export default function ProjectsPage() {
                             />
                         </div>
 
-                        <div className="flex items-center gap-3">
+                        <div className="flex flex-wrap items-center gap-3">
+                            {/* Status Tabs */}
+                            <div className="flex items-center gap-1 border border-zinc-700 rounded-md p-1 bg-zinc-900 overflow-x-auto text-sm">
+                                <button
+                                    onClick={() => setStatusFilter("all")}
+                                    className={cn("px-3 py-1.5 rounded transition-colors whitespace-nowrap", statusFilter === "all" ? "bg-zinc-800 text-[#D5E8D4]" : "text-zinc-500 hover:text-zinc-300")}
+                                >
+                                    Todos
+                                </button>
+                                <button
+                                    onClick={() => setStatusFilter("published")}
+                                    className={cn("px-3 py-1.5 rounded transition-colors whitespace-nowrap", statusFilter === "published" ? "bg-zinc-800 text-[#D5E8D4]" : "text-zinc-500 hover:text-zinc-300")}
+                                >
+                                    Publicados
+                                </button>
+                                <button
+                                    onClick={() => setStatusFilter("draft")}
+                                    className={cn("px-3 py-1.5 rounded transition-colors whitespace-nowrap flex items-center gap-1.5", statusFilter === "draft" ? "bg-zinc-800 text-[#D5E8D4]" : "text-zinc-500 hover:text-zinc-300")}
+                                >
+                                    <span className="w-2 h-2 rounded-full bg-orange-500/80"></span>
+                                    Borradores
+                                </button>
+                            </div>
+
                             {/* Category Filter */}
                             <select
                                 value={categoryFilter}
@@ -229,6 +262,14 @@ export default function ProjectsPage() {
                                         <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-[#90A4AE] text-[#D5E8D4]">
                                             {project.category}
                                         </span>
+                                        <span className={cn(
+                                            "inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold tracking-wider uppercase border",
+                                            project.published !== false 
+                                                ? "border-green-500/30 text-green-400 bg-green-500/10" 
+                                                : "border-orange-500/50 text-orange-400 bg-orange-500/10"
+                                        )}>
+                                            {project.published !== false ? "Publicado" : "Borrador"}
+                                        </span>
                                     </div>
 
                                     {project.description && (
@@ -289,6 +330,14 @@ export default function ProjectsPage() {
                                                 <div className="flex-1 min-w-0">
                                                     <h3 className="font-semibold text-[#D5E8D4] truncate">{project.title}</h3>
                                                     <div className="flex items-center gap-3 mt-1">
+                                                        <span className={cn(
+                                                            "inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold tracking-wider uppercase border",
+                                                            project.published !== false 
+                                                                ? "border-green-500/30 text-green-400 bg-green-500/10" 
+                                                                : "border-orange-500/50 text-orange-400 bg-orange-500/10"
+                                                        )}>
+                                                            {project.published !== false ? "Publicado" : "Borrador"}
+                                                        </span>
                                                         <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-[#90A4AE] text-[#D5E8D4]">
                                                             {project.category}
                                                         </span>

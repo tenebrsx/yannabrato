@@ -1,7 +1,7 @@
 "use client";
 
 import "./globals.css";
-import { Inter, Roboto_Mono } from "next/font/google";
+import { Inter, Oswald } from "next/font/google";
 import SmoothScroll from "@/components/SmoothScroll";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -20,8 +20,8 @@ const inter = Inter({
   display: "swap",
 });
 
-const robotoMono = Roboto_Mono({
-  variable: "--font-roboto-mono",
+const oswald = Oswald({
+  variable: "--font-oswald",
   subsets: ["latin"],
   display: "swap",
 });
@@ -42,7 +42,8 @@ function RootLayoutContent({ children }: { children: React.ReactNode }) {
         const categoryMap = new Map<string, string>(); // slug -> original label
 
         projects.forEach((p: any) => {
-          if (p.category) {
+          // Only include categories that have at least one PUBLISHED project
+          if (p.category && p.published !== false) {
             const normalized = p.category.trim().toLowerCase();
             if (!normalizedCategories.has(normalized)) {
               normalizedCategories.add(normalized);
@@ -100,7 +101,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${robotoMono.variable} antialiased bg-background text-foreground overflow-x-hidden`}
+        className={`${inter.variable} ${oswald.variable} antialiased bg-background text-foreground overflow-x-hidden`}
         suppressHydrationWarning
       >
         <RootLayoutContent>{children}</RootLayoutContent>

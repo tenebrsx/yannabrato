@@ -10,6 +10,7 @@ export interface Project {
     credits?: string | null;
     description?: string | null;
     slug: string;
+    published?: boolean;
     createdAt?: string;
     updatedAt?: string;
 }

@@ -29,62 +29,59 @@ export default function ProjectCard({ project, layoutId, className }: ProjectCar
                 {/* Aspect Ratio Container */}
                 <div className="relative w-full aspect-video overflow-hidden bg-gray-900 video-container">
                     {/* Thumbnail: Video or Image */}
-                    {project.thumbnail && (project.thumbnail.includes(".mp4") || project.thumbnail.includes(".webm")) ? (
-                        <video
-                            src={project.thumbnail}
-                            poster={project.thumbnailPoster} // Poster image for instant loading
-                            className="w-full h-full object-cover group-hover:scale-105 transition-all duration-1000 ease-out"
-                            muted
-                            loop
-                            playsInline
-                            preload="none" // Optimization: Don't load video until needed
-                            // Autoplay Logic: Play when visible, Pause when out of view
-                            // Works on both Desktop and Mobile to mimic "GIF" behavior
-                            ref={(el) => {
-                                if (!el) return;
+                    {project.thumbnail ? (
+                        (project.thumbnail.includes(".mp4") || project.thumbnail.includes(".webm")) ? (
+                            <video
+                                src={project.thumbnail}
+                                poster={project.thumbnailPoster}
+                                className="w-full h-full object-cover group-hover:scale-105 transition-all duration-1000 ease-out"
+                                muted
+                                loop
+                                playsInline
+                                preload="none"
+                                ref={(el) => {
+                                    if (!el) return;
+                                    const preloadObserver = new IntersectionObserver(
+                                        (entries) => {
+                                            entries.forEach((entry) => {
+                                                if (entry.isIntersecting && el.preload === "none") {
+                                                    el.preload = "auto";
+                                                    preloadObserver.unobserve(el);
+                                                }
+                                            });
+                                        },
+                                        { rootMargin: "200px" }
+                                    );
+                                    preloadObserver.observe(el);
 
-                                // Lookahead Observer: Preload when 200px away
-                                const preloadObserver = new IntersectionObserver(
-                                    (entries) => {
-                                        entries.forEach((entry) => {
-                                            if (entry.isIntersecting && el.preload === "none") {
-                                                el.preload = "auto"; // Start loading metadata/content
-                                                preloadObserver.unobserve(el); // Only need to trigger once
-                                            }
-                                        });
-                                    },
-                                    { rootMargin: "200px" } // Trigger 200px before visual enter
-                                );
-                                preloadObserver.observe(el);
-
-                                // Playback Observer: Play ONLY when actually visible
-                                const playObserver = new IntersectionObserver(
-                                    (entries) => {
-                                        entries.forEach((entry) => {
-                                            if (entry.isIntersecting) {
-                                                el.play().catch(() => {
-                                                    // Auto-play might be blocked (e.g. low power mode)
-                                                });
-                                            } else {
-                                                el.pause();
-                                            }
-                                        });
-                                    },
-                                    {
-                                        threshold: 0.5 // Play when 50% visible
-                                    }
-                                );
-                                playObserver.observe(el);
-                            }}
-                        />
+                                    const playObserver = new IntersectionObserver(
+                                        (entries) => {
+                                            entries.forEach((entry) => {
+                                                if (entry.isIntersecting) {
+                                                    el.play().catch(() => {});
+                                                } else {
+                                                    el.pause();
+                                                }
+                                            });
+                                        },
+                                        { threshold: 0.5 }
+                                    );
+                                    playObserver.observe(el);
+                                }}
+                            />
+                        ) : (
+                            <motion.img
+                                src={project.thumbnail}
+                                alt={project.title || "Project Thumbnail"}
+                                className="w-full h-full object-cover group-hover:scale-105 transition-all duration-1000 ease-out"
+                                loading="lazy"
+                                decoding="async"
+                            />
+                        )
                     ) : (
-                        <motion.img
-                            src={project.thumbnail}
-                            alt={project.title || "Project Thumbnail"}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-all duration-1000 ease-out"
-                            loading="lazy" // Optimization: Lazy load images
-                            decoding="async"
-                        />
+                        <div className="w-full h-full flex items-center justify-center bg-zinc-900 group-hover:scale-105 transition-all duration-1000 ease-out">
+                            <span className="font-mono text-xs uppercase text-zinc-600 tracking-widest">Sin Medio</span>
+                        </div>
                     )}
 
                     {/* Overlay (Optional: can be used for playing video on hover) */}

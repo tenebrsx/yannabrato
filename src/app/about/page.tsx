@@ -1,67 +1,201 @@
+"use client";
+
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { Send, Download, Loader2, CheckCircle } from "lucide-react";
+
 export default function AboutPage() {
+    const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+    const [sending, setSending] = useState(false);
+    const [sent, setSent] = useState(false);
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setSending(true);
+
+        try {
+            // Use mailto fallback for now (no backend needed)
+            const subject = encodeURIComponent(`Contacto Web — ${formData.name}`);
+            const body = encodeURIComponent(
+                `Nombre: ${formData.name}\nEmail: ${formData.email}\n\nMensaje:\n${formData.message}`
+            );
+            window.location.href = `mailto:yannambeatom24@gmail.com?subject=${subject}&body=${body}`;
+            setSent(true);
+            setFormData({ name: "", email: "", message: "" });
+        } catch {
+            alert("Error al enviar. Intente de nuevo.");
+        } finally {
+            setSending(false);
+        }
+    };
+
     return (
         <main className="min-h-screen pt-32 pb-20 px-4 md:px-10 bg-black text-[#D5E8D4]">
             <div className="max-w-[1920px] mx-auto">
 
+                {/* Hero Title */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8 }}
+                    className="mb-20 md:mb-32"
+                >
+                    <h1 className="text-5xl md:text-7xl lg:text-8xl font-sans font-bold uppercase leading-[0.9] tracking-tight">
+                        Yanna<br />Beato
+                    </h1>
+                    <p className="mt-6 font-mono text-xs uppercase tracking-widest text-zinc-500">
+                        Coreógrafa · Directora de Movimiento · Producción Audiovisual
+                    </p>
+                </motion.div>
+
                 {/* Bio Section */}
-                <section className="grid grid-cols-1 md:grid-cols-12 gap-10 mb-32 border-b border-white/20 pb-20">
-                    <div className="md:col-span-4">
-                        <h2 className="font-mono text-xs uppercase text-gray-500 tracking-widest sticky top-32">Biografía</h2>
+                <motion.section
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    className="grid grid-cols-1 md:grid-cols-12 gap-10 mb-32 border-b border-white/10 pb-20"
+                >
+                    <div className="md:col-span-3">
+                        <h2 className="font-mono text-xs uppercase text-zinc-500 tracking-widest sticky top-32">Sobre Mí</h2>
                     </div>
-                    <div className="md:col-span-8 md:col-start-5 text-xl md:text-3xl font-light leading-relaxed">
-                        <div>
-                            <p className="text-xl md:text-3xl font-sans font-medium leading-relaxed text-zinc-300">
-                                Yana Beato es el espacio creativo de un director con base en la República Dominicana, enfocado en capturar la esencia vibrante y auténtica del Caribe.
-                            </p>
-                        </div>
-                        <p>
-                            Especializado en narrativas visuales que trascienden fronteras, desde videos musicales hasta comerciales de alto impacto, siempre con una mirada cinematográfica y un estilo inconfundible.
+                    <div className="md:col-span-8 md:col-start-5 space-y-8">
+                        <p className="text-xl md:text-2xl font-sans font-medium leading-relaxed text-zinc-200">
+                            Soy Yanna Beato, una artista del movimiento y profesional audiovisual interesada en la relación entre cuerpo, cámara y narrativa visual.
                         </p>
-                    </div>
-                </section>
+                        <p className="text-lg md:text-xl font-sans leading-relaxed text-zinc-400">
+                            Mi trabajo combina coreografía, dirección de movimiento y procesos de producción audiovisual, explorando el movimiento como lenguaje cinematográfico en videoclips conceptuales, fotografía y proyectos escénicos.
+                        </p>
+                        <p className="text-lg md:text-xl font-sans leading-relaxed text-zinc-400">
+                            Paralelamente he desarrollado experiencia en producción de eventos cinematográficos, televisión y festivales de cine.
+                        </p>
 
-                {/* Contact Section */}
-                <section className="grid grid-cols-1 md:grid-cols-12 gap-10 mb-32 border-b border-white/20 pb-20">
-                    <div className="md:col-span-4">
-                        <h2 className="font-mono text-xs uppercase text-gray-500 tracking-widest sticky top-32">Contacto</h2>
-                    </div>
-                    <div className="md:col-span-8 md:col-start-5 grid grid-cols-1 md:grid-cols-2 gap-10">
-                        <div>
-                            <h3 className="font-mono text-xs text-gray-500 mb-4 uppercase">Representación (US)</h3>
-                            <p className="font-sans text-xl">Anonymous Content</p>
-                            <a href="mailto:rep@anonymouscontent.com" className="font-sans text-sm text-gray-400 hover:text-accent transition-colors">rep@anonymouscontent.com</a>
-                        </div>
-                        <div>
-                            <h3 className="font-mono text-xs text-gray-500 mb-4 uppercase">Directo</h3>
-                            <div className="flex flex-col gap-4">
-                                <a href="mailto:hola@yanabeato.com" className="font-sans text-xl hover:text-accent transition-colors block">hola@yanabeato.com</a>
-                                <a href="#" className="font-sans text-xl hover:text-accent transition-colors block">Instagram</a>
-                                <a href="#" className="font-sans text-xl hover:text-accent transition-colors block">Vimeo</a>
-                            </div>
+                        {/* CV Download */}
+                        <div className="pt-4">
+                            <a
+                                href="/Yanna_Beato_CV.pdf"
+                                download="Yanna_Beato_CV.pdf"
+                                className="inline-flex items-center gap-3 px-6 py-3 border border-zinc-700 rounded-full font-mono text-xs uppercase tracking-widest text-zinc-300 hover:bg-[#D5E8D4] hover:text-black hover:border-[#D5E8D4] transition-all duration-300 group"
+                            >
+                                <Download className="h-4 w-4 group-hover:scale-110 transition-transform" />
+                                Descargar CV Completo
+                            </a>
                         </div>
                     </div>
-                </section>
+                </motion.section>
 
-
-                {/* Selected Clients */}
-                <section className="grid grid-cols-1 md:grid-cols-12 gap-10 mb-32">
-                    <div className="md:col-span-4">
-                        <h2 className="font-mono text-xs uppercase text-gray-500 tracking-widest sticky top-32">Clientes Seleccionados</h2>
+                {/* Narrative Section */}
+                <motion.section
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    className="grid grid-cols-1 md:grid-cols-12 gap-10 mb-32 border-b border-white/10 pb-20"
+                >
+                    <div className="md:col-span-3">
+                        <h2 className="font-mono text-xs uppercase text-zinc-500 tracking-widest sticky top-32">Narrativa · Cuerpo · Cámara</h2>
                     </div>
                     <div className="md:col-span-8 md:col-start-5">
-                        <div className="flex flex-wrap gap-x-12 gap-y-4 text-3xl md:text-5xl font-sans font-bold uppercase text-gray-800">
-                            <span className="hover:text-[#D5E8D4] transition-colors cursor-default">Nike</span>
-                            <span className="hover:text-[#D5E8D4] transition-colors cursor-default">Adidas</span>
-                            <span className="hover:text-[#D5E8D4] transition-colors cursor-default">Vogue</span>
-                            <span className="hover:text-[#D5E8D4] transition-colors cursor-default">Mercedes-Benz</span>
-                            <span className="hover:text-[#D5E8D4] transition-colors cursor-default">Sony</span>
-                            <span className="hover:text-[#D5E8D4] transition-colors cursor-default">Rimowa</span>
-                            <span className="hover:text-[#D5E8D4] transition-colors cursor-default">Prada</span>
-                            <span className="hover:text-[#D5E8D4] transition-colors cursor-default">Beats by Dre</span>
-                            <span className="hover:text-[#D5E8D4] transition-colors cursor-default">Porsche</span>
-                        </div>
+                        <p className="text-lg md:text-xl font-sans leading-relaxed text-zinc-400">
+                            Formación en cine y experiencia en producción audiovisual. Mi enfoque une la dirección creativa con la coreografía para crear piezas donde el movimiento cuenta la historia — desde la conceptualización hasta la postproducción.
+                        </p>
                     </div>
-                </section>
+                </motion.section>
+
+                {/* Contact Section */}
+                <motion.section
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    className="grid grid-cols-1 md:grid-cols-12 gap-10 mb-32 border-b border-white/10 pb-20"
+                >
+                    <div className="md:col-span-3">
+                        <h2 className="font-mono text-xs uppercase text-zinc-500 tracking-widest sticky top-32">Contacto</h2>
+                    </div>
+                    <div className="md:col-span-8 md:col-start-5 grid grid-cols-1 md:grid-cols-2 gap-12">
+                        {/* Contact Info */}
+                        <div className="space-y-6">
+                            <div>
+                                <h3 className="font-mono text-xs text-zinc-500 mb-3 uppercase tracking-wider">Email</h3>
+                                <a href="mailto:yannambeatom24@gmail.com" className="font-sans text-lg hover:text-[#D5E8D4] transition-colors text-zinc-300">
+                                    yannambeatom24@gmail.com
+                                </a>
+                            </div>
+                            <div>
+                                <h3 className="font-mono text-xs text-zinc-500 mb-3 uppercase tracking-wider">Instagram</h3>
+                                <a href="https://instagram.com/myvisual.experience" target="_blank" rel="noopener noreferrer" className="font-sans text-lg hover:text-[#D5E8D4] transition-colors text-zinc-300">
+                                    @myvisual.experience
+                                </a>
+                            </div>
+                            <div>
+                                <h3 className="font-mono text-xs text-zinc-500 mb-3 uppercase tracking-wider">Teléfono</h3>
+                                <a href="tel:+18098583747" className="font-sans text-lg hover:text-[#D5E8D4] transition-colors text-zinc-300">
+                                    809-858-3747
+                                </a>
+                            </div>
+                        </div>
+
+                        {/* Contact Form */}
+                        <form onSubmit={handleSubmit} className="space-y-5">
+                            <div>
+                                <label htmlFor="name" className="font-mono text-xs text-zinc-500 uppercase tracking-wider block mb-2">Nombre</label>
+                                <input
+                                    id="name"
+                                    type="text"
+                                    required
+                                    value={formData.name}
+                                    onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
+                                    className="w-full bg-transparent border-b border-zinc-700 pb-2 text-[#D5E8D4] font-sans text-base focus:outline-none focus:border-[#D5E8D4] transition-colors placeholder:text-zinc-700"
+                                    placeholder="Tu nombre"
+                                />
+                            </div>
+                            <div>
+                                <label htmlFor="email" className="font-mono text-xs text-zinc-500 uppercase tracking-wider block mb-2">Email</label>
+                                <input
+                                    id="email"
+                                    type="email"
+                                    required
+                                    value={formData.email}
+                                    onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+                                    className="w-full bg-transparent border-b border-zinc-700 pb-2 text-[#D5E8D4] font-sans text-base focus:outline-none focus:border-[#D5E8D4] transition-colors placeholder:text-zinc-700"
+                                    placeholder="tu@email.com"
+                                />
+                            </div>
+                            <div>
+                                <label htmlFor="message" className="font-mono text-xs text-zinc-500 uppercase tracking-wider block mb-2">Mensaje</label>
+                                <textarea
+                                    id="message"
+                                    required
+                                    rows={4}
+                                    value={formData.message}
+                                    onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
+                                    className="w-full bg-transparent border-b border-zinc-700 pb-2 text-[#D5E8D4] font-sans text-base focus:outline-none focus:border-[#D5E8D4] transition-colors resize-none placeholder:text-zinc-700"
+                                    placeholder="Escribe tu mensaje..."
+                                />
+                            </div>
+                            <button
+                                type="submit"
+                                disabled={sending || sent}
+                                className="inline-flex items-center gap-3 px-6 py-3 border border-zinc-700 rounded-full font-mono text-xs uppercase tracking-widest text-zinc-300 hover:bg-[#D5E8D4] hover:text-black hover:border-[#D5E8D4] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed group"
+                            >
+                                {sent ? (
+                                    <>
+                                        <CheckCircle className="h-4 w-4" />
+                                        Enviado
+                                    </>
+                                ) : sending ? (
+                                    <>
+                                        <Loader2 className="h-4 w-4 animate-spin" />
+                                        Enviando...
+                                    </>
+                                ) : (
+                                    <>
+                                        <Send className="h-4 w-4 group-hover:scale-110 transition-transform" />
+                                        Enviar Mensaje
+                                    </>
+                                )}
+                            </button>
+                        </form>
+                    </div>
+                </motion.section>
 
             </div>
         </main>

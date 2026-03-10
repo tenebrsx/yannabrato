@@ -16,23 +16,31 @@ export default function Footer() {
                 </div>
 
                 <div className="flex gap-6 font-mono text-xs uppercase">
-                    <Link
-                        href="#"
+                    <a
+                        href="https://instagram.com/myvisual.experience"
                         target="_blank"
+                        rel="noopener noreferrer"
                         className="hover:text-accent transition-colors"
                         onMouseEnter={handleMouseEnter}
                         onMouseLeave={handleMouseLeave}
                     >
                         Instagram
-                    </Link>
-                    <Link
-                        href="#"
-                        target="_blank"
+                    </a>
+                    <a
+                        href="mailto:yannambeatom24@gmail.com"
                         className="hover:text-accent transition-colors"
                         onMouseEnter={handleMouseEnter}
                         onMouseLeave={handleMouseLeave}
                     >
-                        YouTube
+                        Email
+                    </a>
+                    <Link
+                        href="/about"
+                        className="hover:text-accent transition-colors"
+                        onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleMouseLeave}
+                    >
+                        Contacto
                     </Link>
                 </div>
 

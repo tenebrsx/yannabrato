@@ -60,7 +60,7 @@ export default function GalleryPage() {
     return (
         <main className="min-h-screen pt-40 pb-20 px-4 md:px-10 bg-black">
             <div className="max-w-[1920px] mx-auto">
-                <h1 className="text-4xl md:text-8xl font-sans font-bold uppercase leading-none mb-20 text-[#D5E8D4] mix-blend-difference">
+                <h1 className="text-6xl md:text-9xl font-reenie leading-none mb-20 text-[#637381] mix-blend-difference">
                     Archivo<br />Visual
                 </h1>
 
@@ -71,7 +71,7 @@ export default function GalleryPage() {
                         ))}
                     </div>
                 ) : images.length === 0 ? (
-                    <div className="text-zinc-500 text-xl font-mono uppercase tracking-widest text-center py-20">
+                    <div className="text-[#637381] font-reenie text-4xl text-center py-20">
                         Archive Empty
                     </div>
                 ) : (
@@ -87,7 +87,7 @@ export default function GalleryPage() {
                                         decoding="async"
                                     />
                                     <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                        <span className="text-[#D5E8D4] font-mono text-xs uppercase tracking-widest border border-white px-3 py-1">
+                                        <span className="text-[#637381] font-reenie text-xl tracking-widest border border-white px-3 py-1 bg-black/50">
                                             {img.projectTitle}
                                         </span>
                                     </div>

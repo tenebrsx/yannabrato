@@ -3,11 +3,11 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Download } from "lucide-react";
-import ContactForm from "@/components/ContactForm";
+import ContactAccordion from "@/components/ContactAccordion";
 
 export default function AboutPage() {
     return (
-        <main className="min-h-screen pt-32 pb-20 px-4 md:px-10 bg-black text-[#D5E8D4]">
+        <main className="min-h-screen pt-32 pb-20 px-4 md:px-10 bg-black text-[#637381]">
             <div className="max-w-[1920px] mx-auto">
 
                 {/* Hero Title */}
@@ -17,10 +17,10 @@ export default function AboutPage() {
                     transition={{ duration: 0.8 }}
                     className="mb-20 md:mb-32"
                 >
-                    <h1 className="text-5xl md:text-7xl lg:text-8xl font-sans font-bold uppercase leading-[0.9] tracking-tight">
+                    <h1 className="text-6xl md:text-8xl lg:text-9xl font-reenie leading-[0.9] tracking-tight">
                         Yanna<br />Beato
                     </h1>
-                    <p className="mt-6 font-mono text-xs uppercase tracking-widest text-zinc-500">
+                    <p className="mt-6 font-sans text-xs md:text-sm text-zinc-500 uppercase tracking-[0.25em]">
                         Coreógrafa · Directora de Movimiento · Producción Audiovisual
                     </p>
                 </motion.div>
@@ -30,10 +30,10 @@ export default function AboutPage() {
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
-                    className="grid grid-cols-1 md:grid-cols-12 gap-10 mb-32 border-b border-white/10 pb-20"
+                    className="grid grid-cols-1 md:grid-cols-12 gap-10 mb-32 border-b border-white/10 pb-20 max-w-6xl mx-auto"
                 >
                     <div className="md:col-span-3">
-                        <h2 className="font-mono text-xs uppercase text-zinc-500 tracking-widest sticky top-32">Sobre Mí</h2>
+                        <h2 className="font-sans text-[10px] md:text-xs text-[#637381] uppercase tracking-[0.2em] sticky top-32">Sobre Mí</h2>
                     </div>
                     <div className="md:col-span-8 md:col-start-5 space-y-8">
                         <p className="text-xl md:text-2xl font-sans font-medium leading-relaxed text-zinc-200">
@@ -51,7 +51,7 @@ export default function AboutPage() {
                             <a
                                 href="/Yanna_Beato_CV.pdf"
                                 download="Yanna_Beato_CV.pdf"
-                                className="inline-flex items-center gap-3 px-6 py-3 border border-zinc-700 rounded-full font-mono text-xs uppercase tracking-widest text-zinc-300 hover:bg-[#D5E8D4] hover:text-black hover:border-[#D5E8D4] transition-all duration-300 group"
+                                className="inline-flex items-center gap-3 px-6 py-3 border border-zinc-700 rounded-full font-sans text-[10px] md:text-xs uppercase tracking-[0.25em] text-zinc-300 hover:bg-[#637381] hover:text-black hover:border-[#637381] transition-all duration-300 group"
                             >
                                 <Download className="h-4 w-4 group-hover:scale-110 transition-transform" />
                                 Descargar CV Completo
@@ -65,10 +65,10 @@ export default function AboutPage() {
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
-                    className="grid grid-cols-1 md:grid-cols-12 gap-10 mb-32 border-b border-white/10 pb-20"
+                    className="grid grid-cols-1 md:grid-cols-12 gap-10 mb-32 border-b border-white/10 pb-20 max-w-6xl mx-auto"
                 >
                     <div className="md:col-span-3">
-                        <h2 className="font-mono text-xs uppercase text-zinc-500 tracking-widest sticky top-32">Narrativa · Cuerpo · Cámara</h2>
+                        <h2 className="font-sans text-[10px] md:text-xs text-[#637381] uppercase tracking-[0.2em] sticky top-32">Narrativa · Cuerpo · Cámara</h2>
                     </div>
                     <div className="md:col-span-8 md:col-start-5">
                         <p className="text-lg md:text-xl font-sans leading-relaxed text-zinc-400">
@@ -77,43 +77,7 @@ export default function AboutPage() {
                     </div>
                 </motion.section>
 
-                {/* Contact Section */}
-                <motion.section
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    className="grid grid-cols-1 md:grid-cols-12 gap-10 mb-32 border-b border-white/10 pb-20"
-                >
-                    <div className="md:col-span-3">
-                        <h2 className="font-mono text-xs uppercase text-zinc-500 tracking-widest sticky top-32">Contacto</h2>
-                    </div>
-                    <div className="md:col-span-8 md:col-start-5 grid grid-cols-1 md:grid-cols-2 gap-12">
-                        {/* Contact Info */}
-                        <div className="space-y-6">
-                            <div>
-                                <h3 className="font-mono text-xs text-zinc-500 mb-3 uppercase tracking-wider">Email</h3>
-                                <a href="mailto:yannambeatom24@gmail.com" className="font-sans text-lg hover:text-[#D5E8D4] transition-colors text-zinc-300">
-                                    yannambeatom24@gmail.com
-                                </a>
-                            </div>
-                            <div>
-                                <h3 className="font-mono text-xs text-zinc-500 mb-3 uppercase tracking-wider">Instagram</h3>
-                                <a href="https://instagram.com/myvisual.experience" target="_blank" rel="noopener noreferrer" className="font-sans text-lg hover:text-[#D5E8D4] transition-colors text-zinc-300">
-                                    @myvisual.experience
-                                </a>
-                            </div>
-                            <div>
-                                <h3 className="font-mono text-xs text-zinc-500 mb-3 uppercase tracking-wider">Teléfono</h3>
-                                <a href="tel:+18098583747" className="font-sans text-lg hover:text-[#D5E8D4] transition-colors text-zinc-300">
-                                    809-858-3747
-                                </a>
-                            </div>
-                        </div>
-
-                        {/* Contact Form */}
-                        <ContactForm />
-                    </div>
-                </motion.section>
+                <ContactAccordion />
 
             </div>
         </main>

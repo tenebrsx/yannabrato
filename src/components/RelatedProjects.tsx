@@ -44,7 +44,7 @@ export default function RelatedProjects({ currentProjectId }: RelatedProjectsPro
         <div className="mt-32 space-y-10">
             <div className="flex items-center gap-4">
                 <span className="h-px flex-1 bg-zinc-900" />
-                <h3 className="font-mono text-xs uppercase text-zinc-500 tracking-widest">Más Proyectos</h3>
+                <h3 className="font-reenie text-2xl text-zinc-500 tracking-widest">Más Proyectos</h3>
                 <span className="h-px flex-1 bg-zinc-900" />
             </div>
 

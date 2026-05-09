@@ -72,7 +72,7 @@ export default function AdminDashboard() {
                     {/* Header Section */}
                     <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
                         <div>
-                            <h1 className="text-4xl font-bold tracking-tight text-[#D5E8D4] mb-2">
+                            <h1 className="text-4xl font-bold tracking-tight text-[#637381] mb-2">
                                 Panel de Control
                             </h1>
                             <p className="text-zinc-400 max-w-md">
@@ -107,7 +107,7 @@ export default function AdminDashboard() {
                             <Card className="h-full bg-zinc-900/50 border-white/5 hover:border-white/10 transition-colors">
                                 <CardHeader className="pb-2">
                                     <CardDescription>Total de Proyectos</CardDescription>
-                                    <CardTitle className="text-4xl font-light text-[#D5E8D4]">
+                                    <CardTitle className="text-4xl font-light text-[#637381]">
                                         {loading ? "..." : projects.length}
                                     </CardTitle>
                                 </CardHeader>
@@ -128,7 +128,7 @@ export default function AdminDashboard() {
                                         <div className="h-10 w-10 rounded-full bg-orange-500/20 flex items-center justify-center mb-4 text-orange-500 group-hover:scale-110 transition-transform">
                                             <Video className="h-5 w-5" />
                                         </div>
-                                        <CardTitle className="text-[#D5E8D4] group-hover:text-orange-400 transition-colors">Crear Proyecto</CardTitle>
+                                        <CardTitle className="text-[#637381] group-hover:text-orange-400 transition-colors">Crear Proyecto</CardTitle>
                                         <CardDescription>
                                             Añade un nuevo video o proyecto a tu portafolio
                                         </CardDescription>
@@ -145,16 +145,16 @@ export default function AdminDashboard() {
                             <Link href="/admin/settings" className="block h-full">
                                 <Card className="h-full bg-zinc-900/50 border-white/5 hover:bg-zinc-800/80 hover:border-zinc-700 transition-all cursor-pointer group">
                                     <CardHeader>
-                                        <div className="h-10 w-10 rounded-full bg-zinc-800 flex items-center justify-center mb-4 text-zinc-400 group-hover:text-[#D5E8D4] transition-colors">
+                                        <div className="h-10 w-10 rounded-full bg-zinc-800 flex items-center justify-center mb-4 text-zinc-400 group-hover:text-[#637381] transition-colors">
                                             <Settings className="h-5 w-5" />
                                         </div>
-                                        <CardTitle className="text-[#D5E8D4]">Configuración del Sitio</CardTitle>
+                                        <CardTitle className="text-[#637381]">Configuración del Sitio</CardTitle>
                                         <CardDescription>
                                             Configura el video principal y opciones globales
                                         </CardDescription>
                                     </CardHeader>
                                     <CardContent className="flex justify-end">
-                                        <ArrowUpRight className="h-5 w-5 text-zinc-600 group-hover:text-[#D5E8D4] transition-colors" />
+                                        <ArrowUpRight className="h-5 w-5 text-zinc-600 group-hover:text-[#637381] transition-colors" />
                                     </CardContent>
                                 </Card>
                             </Link>
@@ -164,7 +164,7 @@ export default function AdminDashboard() {
                     {/* Recent Projects List */}
                     <div className="space-y-6">
                         <div className="flex items-center justify-between border-b border-white/5 pb-4">
-                            <h2 className="text-xl font-semibold text-[#D5E8D4]">Proyectos Recientes</h2>
+                            <h2 className="text-xl font-semibold text-[#637381]">Proyectos Recientes</h2>
                             <Link href="/admin/projects" className="text-sm text-orange-500 hover:text-orange-400 transition-colors flex items-center gap-1">
                                 Ver Todos <ArrowUpRight className="h-3 w-3" />
                             </Link>
@@ -201,7 +201,7 @@ export default function AdminDashboard() {
 
                                             {/* Info */}
                                             <div className="flex-1 min-w-0">
-                                                <h3 className="font-medium text-zinc-200 group-hover:text-[#D5E8D4] truncate">
+                                                <h3 className="font-medium text-zinc-200 group-hover:text-[#637381] truncate">
                                                     {project.title}
                                                 </h3>
                                                 <div className="flex items-center gap-2 mt-1">

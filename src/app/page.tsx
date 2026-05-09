@@ -1,11 +1,15 @@
 "use client";
 
 import { useEffect, useState, useMemo } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, doc, getDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
+import CategoryAccordion from "@/components/CategoryAccordion";
 import ProjectGrid from "@/components/ProjectGrid";
 import { motion } from "framer-motion";
-import ContactForm from "@/components/ContactForm";
+import AboutAccordion from "@/components/AboutAccordion";
+import ContactAccordion from "@/components/ContactAccordion";
+import HeroVideo from "@/components/HeroVideo";
+import { sortCategories } from "@/lib/utils";
 
 interface Project {
   id: string;
@@ -26,10 +30,11 @@ interface Project {
 export default function Home() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
-  const [activeCategory, setActiveCategory] = useState<string>("Todos");
+  const [heroVideoUrl, setHeroVideoUrl] = useState("");
 
   useEffect(() => {
     fetchData();
+    fetchSettings();
   }, []);
 
   const fetchData = async () => {
@@ -48,127 +53,93 @@ export default function Home() {
     }
   };
 
-  // Extract unique categories from projects
-  const categories = useMemo(() => {
+  const fetchSettings = async () => {
+    try {
+      const docRef = doc(db, "settings", "general");
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        setHeroVideoUrl(docSnap.data().heroVideoUrl || "");
+      }
+    } catch (error) {
+      console.error("Error fetching settings:", error);
+    }
+  };
+
+  // Extract unique categories from projects (excluding "Todos")
+  const categoriesList = useMemo(() => {
     const cats = new Set(projects.map(p => p.category).filter(Boolean));
-    return ["Todos", ...Array.from(cats).sort()];
+    return Array.from(cats).sort(sortCategories);
   }, [projects]);
 
-  // Filter projects by active category and prioritize video projects on full view
-  const filteredProjects = useMemo(() => {
-    let result = projects;
-
-    if (activeCategory === "Todos") {
-      // Prioritize projects that have a valid videoUrl loop
-      result = [...projects].sort((a, b) => {
-        const aHasVideo = !!(a.videoUrl && a.videoUrl.trim() !== "");
-        const bHasVideo = !!(b.videoUrl && b.videoUrl.trim() !== "");
-        
-        if (aHasVideo && !bHasVideo) return -1;
-        if (!aHasVideo && bHasVideo) return 1;
-        return 0;
-      });
-    } else {
-      result = projects.filter(p => p.category === activeCategory);
-    }
-    
-    return result;
-  }, [projects, activeCategory]);
-
   return (
-    <main className="min-h-screen pt-32 pb-20 px-4 md:px-10 bg-black">
-      <div className="max-w-[1920px] mx-auto">
-
-        {/* Category Filter Chips */}
-        {!loading && categories.length > 1 && (
-          <div className="mb-12 md:mb-16">
-            <div className="flex flex-wrap gap-3">
-              {categories.map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => setActiveCategory(cat)}
-                  className={`
-                    px-5 py-2.5 rounded-full font-mono text-xs uppercase tracking-widest
-                    border transition-all duration-300 cursor-pointer
-                    ${activeCategory === cat
-                      ? "bg-[#D5E8D4] text-black border-[#D5E8D4]"
-                      : "bg-transparent text-zinc-400 border-zinc-700 hover:border-zinc-500 hover:text-zinc-200"
-                    }
-                  `}
-                >
-                  {cat}
-                  {activeCategory !== cat && (
-                    <span className="ml-2 text-zinc-600">
-                      {cat === "Todos" ? projects.length : projects.filter(p => p.category === cat).length}
-                    </span>
-                  )}
-                </button>
-              ))}
+    <main className="min-h-screen bg-black">
+      {/* Branding Hero Section with Video Background */}
+      <section className="relative h-screen w-full flex flex-col items-center justify-center text-center overflow-hidden">
+        {/* Video Background */}
+        <HeroVideo videoUrl={heroVideoUrl} />
+        
+        {/* Branding Overlay */}
+        <div className="relative z-20 px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.5 }}
+          >
+            <h1 className="text-6xl md:text-8xl lg:text-[10rem] font-reenie leading-none text-[#637381]">
+              Yanna Beato
+            </h1>
+            <div className="mt-8 space-y-4">
+              <h2 className="font-sans text-xs md:text-sm text-[#637381] uppercase tracking-[0.3em] font-medium opacity-90">
+                Coreógrafa y directora de movimiento para audiovisual
+              </h2>
+              <p className="font-sans text-[10px] md:text-xs text-[#637381] uppercase tracking-[0.4em] opacity-70">
+                Narrativa · Cuerpo · Cámara
+              </p>
             </div>
-          </div>
-        )}
+          </motion.div>
+        </div>
+      </section>
 
-        {/* Project Grid */}
+      <div className="max-w-[1920px] mx-auto px-4 md:px-10">
+        {/* Project Accordions */}
         {loading ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {[...Array(6)].map((_, i) => (
-              <div key={i} className="aspect-video bg-zinc-800 animate-pulse rounded" />
+          <div className="space-y-12">
+            {[...Array(4)].map((_, i) => (
+              <div key={i} className="border-b border-white/5 py-12">
+                <div className="h-20 bg-zinc-900 animate-pulse rounded w-1/3 mb-8" />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="aspect-video bg-zinc-900 animate-pulse rounded" />
+                    <div className="aspect-video bg-zinc-900 animate-pulse rounded" />
+                </div>
+              </div>
             ))}
           </div>
-        ) : filteredProjects.length > 0 ? (
-          <motion.div
-            key={activeCategory}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            <ProjectGrid projects={filteredProjects} />
-          </motion.div>
+        ) : categoriesList.length > 0 ? (
+          <div className="mt-10">
+            {categoriesList.map((cat, index) => (
+              <CategoryAccordion
+                key={cat}
+                title={cat}
+                projects={projects.filter(p => p.category === cat)}
+                initialOpen={false}
+              />
+            ))}
+          </div>
         ) : (
           <div className="text-center py-32">
-            <p className="font-mono text-sm text-zinc-500 uppercase tracking-widest">
-              No hay proyectos en esta categoría todavía
+            <p className="font-reenie text-3xl text-zinc-500 tracking-widest">
+              No hay proyectos todavía
             </p>
           </div>
         )}
 
-        {/* Contact Section at bottom */}
-        <motion.section
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-12 gap-10 mt-32 border-t border-white/10 pt-20 text-[#D5E8D4]"
-        >
-            <div className="md:col-span-3">
-                <h2 className="font-mono text-xs uppercase text-zinc-500 tracking-widest">Contacto</h2>
-            </div>
-            <div className="md:col-span-8 md:col-start-5 grid grid-cols-1 md:grid-cols-2 gap-12">
-                {/* Contact Info */}
-                <div className="space-y-6">
-                    <div>
-                        <h3 className="font-mono text-xs text-zinc-500 mb-3 uppercase tracking-wider">Email</h3>
-                        <a href="mailto:yannambeatom24@gmail.com" className="font-sans text-lg hover:text-[#D5E8D4] transition-colors text-zinc-300">
-                            yannambeatom24@gmail.com
-                        </a>
-                    </div>
-                    <div>
-                        <h3 className="font-mono text-xs text-zinc-500 mb-3 uppercase tracking-wider">Instagram</h3>
-                        <a href="https://instagram.com/myvisual.experience" target="_blank" rel="noopener noreferrer" className="font-sans text-lg hover:text-[#D5E8D4] transition-colors text-zinc-300">
-                            @myvisual.experience
-                        </a>
-                    </div>
-                    <div>
-                        <h3 className="font-mono text-xs text-zinc-500 mb-3 uppercase tracking-wider">Teléfono</h3>
-                        <a href="tel:+18098583747" className="font-sans text-lg hover:text-[#D5E8D4] transition-colors text-zinc-300">
-                            809-858-3747
-                        </a>
-                    </div>
-                </div>
+        <div id="sobre-mi">
+          <AboutAccordion />
+        </div>
 
-                {/* Contact Form Component */}
-                <ContactForm />
-            </div>
-        </motion.section>
+        <div id="contacto">
+          <ContactAccordion />
+        </div>
 
       </div>
     </main>

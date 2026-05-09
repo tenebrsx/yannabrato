@@ -34,7 +34,7 @@ export default function VideoPlayer({ thumbnail, videoUrl }: VideoPlayerProps) {
                         className="absolute inset-0 flex items-center justify-center"
                     >
                         <div className="w-20 h-20 rounded-full border border-white/30 bg-black/50 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                            <Play className="w-8 h-8 text-[#D5E8D4] fill-[#D5E8D4] ml-1" />
+                            <Play className="w-8 h-8 text-[#637381] fill-[#637381] ml-1" />
                         </div>
                     </motion.div>
                 </>

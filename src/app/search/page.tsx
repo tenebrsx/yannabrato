@@ -46,7 +46,7 @@ export default function SearchPage() {
     );
 
     return (
-        <main className="min-h-screen pt-40 pb-20 px-4 md:px-10 bg-black text-[#D5E8D4]">
+        <main className="min-h-screen pt-40 pb-20 px-4 md:px-10 bg-black text-[#637381]">
             <div className="max-w-[1920px] mx-auto">
                 {/* Search Header */}
                 <div className="mb-20">
@@ -59,7 +59,7 @@ export default function SearchPage() {
                         placeholder="Buscar por nombre, categoría, descripción..."
                         value={query}
                         onChange={(e) => setQuery(e.target.value)}
-                        className="w-full md:w-2/3 px-6 py-4 bg-zinc-900 text-[#D5E8D4] border border-zinc-800 focus:border-white transition-colors outline-none font-mono text-sm"
+                        className="w-full md:w-2/3 px-6 py-4 bg-zinc-900 text-[#637381] border border-zinc-800 focus:border-white transition-colors outline-none font-mono text-sm"
                     />
                 </div>
 

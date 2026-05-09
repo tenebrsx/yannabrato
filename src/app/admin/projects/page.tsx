@@ -3,10 +3,11 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { collection, getDocs, doc, deleteDoc } from "firebase/firestore";
+import { collection, getDocs, doc, deleteDoc, updateDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import AdminLayout from "@/components/admin/AdminLayout";
 import ProtectedRoute from "@/components/admin/ProtectedRoute";
+import { toast } from "sonner";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -19,7 +20,10 @@ import {
     List,
     Film,
     Calendar,
-    Tag
+    Tag,
+    MoreVertical,
+    Check,
+    Loader2
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -44,6 +48,8 @@ export default function ProjectsPage() {
     const [categoryFilter, setCategoryFilter] = useState<string>("all");
     const [statusFilter, setStatusFilter] = useState<StatusFilter>("all");
     const [viewMode, setViewMode] = useState<ViewMode>("grid");
+    const [updatingId, setUpdatingId] = useState<string | null>(null);
+    const [openMenuId, setOpenMenuId] = useState<string | null>(null);
     const router = useRouter();
 
     useEffect(() => {
@@ -65,16 +71,40 @@ export default function ProjectsPage() {
         }
     };
 
-    const handleDelete = async (id: string) => {
-        if (!confirm("¿Estás seguro de que quieres eliminar este proyecto?")) {
-            return;
+    const handleUpdateStatus = async (id: string, published: boolean) => {
+        setUpdatingId(id);
+        setOpenMenuId(null);
+        try {
+            const projectRef = doc(db, "projects", id);
+            await updateDoc(projectRef, {
+                published,
+                updatedAt: new Date().toISOString()
+            });
+            // Update local state
+            setProjects(prev => prev.map(p => 
+                p.id === id ? { ...p, published } : p
+            ));
+        } catch (error) {
+            console.error("Error updating project status:", error);
+            toast.error("Error al actualizar el estado del proyecto");
+        } finally {
+            setUpdatingId(null);
         }
+    };
 
+    const handleDelete = async (id: string) => {
+        // Redundant confirm removed here, it might be triggered from the UI 
         try {
             await deleteDoc(doc(db, "projects", id));
             fetchProjects();
+            toast.success("Proyecto eliminado", {
+                description: "El proyecto ha sido borrado exitosamente."
+            });
         } catch (error) {
             console.error("Error deleting project:", error);
+            toast.error("Error", {
+                description: "No se pudo eliminar el proyecto."
+            });
         }
     };
 
@@ -103,7 +133,7 @@ export default function ProjectsPage() {
                 <div className="mb-8">
                     <div className="flex items-center justify-between mb-6">
                         <div>
-                            <h1 className="text-3xl font-semibold tracking-tight text-[#D5E8D4]">Proyectos</h1>
+                            <h1 className="text-3xl font-semibold tracking-tight text-[#637381]">Proyectos</h1>
                             <p className="text-zinc-400 mt-1">
                                 {filteredProjects.length} {filteredProjects.length === 1 ? 'proyecto' : 'proyectos'}
                                 {categoryFilter !== "all" && ` en ${categoryFilter}`}
@@ -135,19 +165,19 @@ export default function ProjectsPage() {
                             <div className="flex items-center gap-1 border border-zinc-700 rounded-md p-1 bg-zinc-900 overflow-x-auto text-sm">
                                 <button
                                     onClick={() => setStatusFilter("all")}
-                                    className={cn("px-3 py-1.5 rounded transition-colors whitespace-nowrap", statusFilter === "all" ? "bg-zinc-800 text-[#D5E8D4]" : "text-zinc-500 hover:text-zinc-300")}
+                                    className={cn("px-3 py-1.5 rounded transition-colors whitespace-nowrap", statusFilter === "all" ? "bg-zinc-800 text-[#637381]" : "text-zinc-500 hover:text-zinc-300")}
                                 >
                                     Todos
                                 </button>
                                 <button
                                     onClick={() => setStatusFilter("published")}
-                                    className={cn("px-3 py-1.5 rounded transition-colors whitespace-nowrap", statusFilter === "published" ? "bg-zinc-800 text-[#D5E8D4]" : "text-zinc-500 hover:text-zinc-300")}
+                                    className={cn("px-3 py-1.5 rounded transition-colors whitespace-nowrap", statusFilter === "published" ? "bg-zinc-800 text-[#637381]" : "text-zinc-500 hover:text-zinc-300")}
                                 >
                                     Publicados
                                 </button>
                                 <button
                                     onClick={() => setStatusFilter("draft")}
-                                    className={cn("px-3 py-1.5 rounded transition-colors whitespace-nowrap flex items-center gap-1.5", statusFilter === "draft" ? "bg-zinc-800 text-[#D5E8D4]" : "text-zinc-500 hover:text-zinc-300")}
+                                    className={cn("px-3 py-1.5 rounded transition-colors whitespace-nowrap flex items-center gap-1.5", statusFilter === "draft" ? "bg-zinc-800 text-[#637381]" : "text-zinc-500 hover:text-zinc-300")}
                                 >
                                     <span className="w-2 h-2 rounded-full bg-orange-500/80"></span>
                                     Borradores
@@ -158,7 +188,7 @@ export default function ProjectsPage() {
                             <select
                                 value={categoryFilter}
                                 onChange={(e) => setCategoryFilter(e.target.value)}
-                                className="h-10 rounded-md border border-zinc-700 bg-zinc-900 text-[#D5E8D4] px-3 py-2 text-sm ring-offset-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#90A4AE] focus-visible:ring-offset-2"
+                                className="h-10 rounded-md border border-zinc-700 bg-zinc-900 text-[#637381] px-3 py-2 text-sm ring-offset-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#90A4AE] focus-visible:ring-offset-2"
                             >
                                 {categories.map(cat => (
                                     <option key={cat} value={cat}>
@@ -173,7 +203,7 @@ export default function ProjectsPage() {
                                     onClick={() => setViewMode("grid")}
                                     className={cn(
                                         "p-2 rounded hover:bg-zinc-800 transition-colors",
-                                        viewMode === "grid" && "bg-[#90A4AE] text-[#D5E8D4] hover:bg-[#A4B5BE]"
+                                        viewMode === "grid" && "bg-[#90A4AE] text-[#637381] hover:bg-[#A4B5BE]"
                                     )}
                                     title="Vista de cuadrícula"
                                 >
@@ -183,7 +213,7 @@ export default function ProjectsPage() {
                                     onClick={() => setViewMode("list")}
                                     className={cn(
                                         "p-2 rounded hover:bg-zinc-800 transition-colors",
-                                        viewMode === "list" && "bg-[#90A4AE] text-[#D5E8D4] hover:bg-[#A4B5BE]"
+                                        viewMode === "list" && "bg-[#90A4AE] text-[#637381] hover:bg-[#A4B5BE]"
                                     )}
                                     title="Vista de lista"
                                 >
@@ -213,7 +243,7 @@ export default function ProjectsPage() {
                     <Card className="p-12">
                         <div className="text-center">
                             <Film className="mx-auto h-12 w-12 text-zinc-600 mb-4" />
-                            <h3 className="text-lg font-medium text-[#D5E8D4] mb-2">
+                            <h3 className="text-lg font-medium text-[#637381] mb-2">
                                 {searchQuery || categoryFilter !== "all"
                                     ? "No se encontraron proyectos"
                                     : "Aún no hay proyectos"}
@@ -249,6 +279,74 @@ export default function ProjectsPage() {
                                     ) : (
                                         <Film className="h-8 w-8 text-zinc-600" />
                                     )}
+
+                                    {/* Status Quick Action Trigger */}
+                                    <div className="absolute top-2 right-2 z-10">
+                                        <button
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                e.stopPropagation();
+                                                setOpenMenuId(openMenuId === project.id ? null : project.id);
+                                            }}
+                                            className="p-1.5 rounded-lg bg-black/50 backdrop-blur-md border border-white/10 text-white/70 hover:text-white hover:bg-black/70 transition-all opacity-0 group-hover:opacity-100"
+                                        >
+                                            <MoreVertical className="h-4 w-4" />
+                                        </button>
+
+                                        {/* Dropdown Menu */}
+                                        {openMenuId === project.id && (
+                                            <>
+                                                <div 
+                                                    className="fixed inset-0 z-20" 
+                                                    onClick={() => setOpenMenuId(null)}
+                                                />
+                                                <div className="absolute right-0 mt-2 w-40 rounded-xl bg-zinc-900 border border-white/10 shadow-2xl z-30 overflow-hidden py-1 animate-in fade-in zoom-in duration-200 origin-top-right">
+                                                    <div className="px-3 py-2 text-[10px] font-bold text-zinc-500 uppercase tracking-wider border-b border-white/5">
+                                                        Cambiar Estado
+                                                    </div>
+                                                    <button
+                                                        onClick={() => handleUpdateStatus(project.id, true)}
+                                                        className={cn(
+                                                            "w-full flex items-center justify-between px-3 py-2 text-sm hover:bg-zinc-800 transition-colors",
+                                                            project.published !== false ? "text-[#637381]" : "text-zinc-400"
+                                                        )}
+                                                    >
+                                                        Publicado
+                                                        {project.published !== false && <Check className="h-3.5 w-3.5" />}
+                                                    </button>
+                                                    <button
+                                                        onClick={() => handleUpdateStatus(project.id, false)}
+                                                        className={cn(
+                                                            "w-full flex items-center justify-between px-3 py-2 text-sm hover:bg-zinc-800 transition-colors",
+                                                            project.published === false ? "text-[#637381]" : "text-zinc-400"
+                                                        )}
+                                                    >
+                                                        Borrador
+                                                        {project.published === false && <Check className="h-3.5 w-3.5" />}
+                                                    </button>
+                                                    <button
+                                                        onClick={() => {
+                                                            if (confirm("¿Estás seguro de que quieres eliminar este proyecto?")) {
+                                                                handleDelete(project.id);
+                                                            }
+                                                            setOpenMenuId(null);
+                                                        }}
+                                                        className="w-full flex items-center justify-between px-3 py-2 text-sm text-red-400 hover:bg-red-500/10 transition-colors border-t border-white/5 mt-1"
+                                                    >
+                                                        Eliminar
+                                                        <Trash2 className="h-3.5 w-3.5" />
+                                                    </button>
+                                                </div>
+                                            </>
+                                        )}
+                                    </div>
+
+                                    {/* Loading Overlay */}
+                                    {updatingId === project.id && (
+                                        <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px] z-40 flex items-center justify-center">
+                                            <Loader2 className="h-6 w-6 text-white animate-spin" />
+                                        </div>
+                                    )}
                                 </div>
 
                                 {/* Content */}
@@ -259,17 +357,25 @@ export default function ProjectsPage() {
 
                                     <div className="flex items-center gap-2 text-xs text-zinc-400">
                                         <Tag className="h-3 w-3" />
-                                        <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-[#90A4AE] text-[#D5E8D4]">
+                                        <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-[#90A4AE] text-[#637381]">
                                             {project.category}
                                         </span>
-                                        <span className={cn(
-                                            "inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold tracking-wider uppercase border",
-                                            project.published !== false 
-                                                ? "border-green-500/30 text-green-400 bg-green-500/10" 
-                                                : "border-orange-500/50 text-orange-400 bg-orange-500/10"
-                                        )}>
+                                        <button 
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                e.stopPropagation();
+                                                handleUpdateStatus(project.id, !(project.published !== false));
+                                            }}
+                                            className={cn(
+                                                "inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold tracking-wider uppercase border transition-all hover:scale-105 active:scale-95",
+                                                project.published !== false 
+                                                    ? "border-green-500/30 text-green-400 bg-green-500/10 hover:bg-green-500/20" 
+                                                    : "border-orange-500/50 text-orange-400 bg-orange-500/10 hover:bg-orange-500/20"
+                                            )}
+                                            title="Clic para cambiar estado"
+                                        >
                                             {project.published !== false ? "Publicado" : "Borrador"}
-                                        </span>
+                                        </button>
                                     </div>
 
                                     {project.description && (
@@ -282,24 +388,16 @@ export default function ProjectsPage() {
                                 {/* Actions */}
                                 <CardContent className="pt-0 flex gap-2">
                                     <Link href={`/project?slug=${project.slug}`} target="_blank" className="flex-1">
-                                        <Button variant="outline" size="sm" className="w-full text-xs">
+                                        <Button variant="outline" size="sm" className="w-full text-xs bg-zinc-900/50 border-white/5 hover:bg-zinc-800">
                                             Ver
                                         </Button>
                                     </Link>
                                     <Link href={`/admin/edit?id=${project.id}`} className="flex-1">
-                                        <Button variant="outline" size="sm" className="w-full gap-1.5 text-xs">
+                                        <Button variant="outline" size="sm" className="w-full gap-1.5 text-xs bg-zinc-900/50 border-white/5 hover:bg-zinc-800">
                                             <Edit2 className="h-3 w-3" />
                                             Editar
                                         </Button>
                                     </Link>
-                                    <Button
-                                        variant="outline"
-                                        size="sm"
-                                        onClick={() => handleDelete(project.id)}
-                                        className="gap-1.5 text-red-600 hover:bg-red-50 hover:text-red-700 hover:border-red-200 text-xs"
-                                    >
-                                        <Trash2 className="h-3 w-3" />
-                                    </Button>
                                 </CardContent>
                             </Card>
                         ))}
@@ -322,23 +420,38 @@ export default function ProjectsPage() {
                                             ) : (
                                                 <Film className="h-6 w-6 text-zinc-600" />
                                             )}
+                                            
+                                            {/* Loading Overlay */}
+                                            {updatingId === project.id && (
+                                                <div className="absolute inset-0 bg-black/60 backdrop-blur-sm z-10 flex items-center justify-center">
+                                                    <Loader2 className="h-4 w-4 text-white animate-spin" />
+                                                </div>
+                                            )}
                                         </div>
 
                                         {/* Info */}
                                         <div className="flex-1 min-w-0">
                                             <div className="flex items-start justify-between gap-4">
                                                 <div className="flex-1 min-w-0">
-                                                    <h3 className="font-semibold text-[#D5E8D4] truncate">{project.title}</h3>
+                                                    <h3 className="font-semibold text-[#637381] truncate">{project.title}</h3>
                                                     <div className="flex items-center gap-3 mt-1">
-                                                        <span className={cn(
-                                                            "inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold tracking-wider uppercase border",
-                                                            project.published !== false 
-                                                                ? "border-green-500/30 text-green-400 bg-green-500/10" 
-                                                                : "border-orange-500/50 text-orange-400 bg-orange-500/10"
-                                                        )}>
+                                                        <button 
+                                                            onClick={(e) => {
+                                                                e.preventDefault();
+                                                                e.stopPropagation();
+                                                                handleUpdateStatus(project.id, !(project.published !== false));
+                                                            }}
+                                                            className={cn(
+                                                                "inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold tracking-wider uppercase border transition-all hover:scale-105 active:scale-95",
+                                                                project.published !== false 
+                                                                    ? "border-green-500/30 text-green-400 bg-green-500/10 hover:bg-green-500/20" 
+                                                                    : "border-orange-500/50 text-orange-400 bg-orange-500/10 hover:bg-orange-500/20"
+                                                            )}
+                                                            title="Clic para cambiar estado"
+                                                        >
                                                             {project.published !== false ? "Publicado" : "Borrador"}
-                                                        </span>
-                                                        <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-[#90A4AE] text-[#D5E8D4]">
+                                                        </button>
+                                                        <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-[#90A4AE] text-[#637381]">
                                                             {project.category}
                                                         </span>
                                                         <span className="text-xs text-zinc-400">

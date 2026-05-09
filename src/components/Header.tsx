@@ -26,36 +26,35 @@ export default function Header({ categories = [] }: HeaderProps) {
 
     // Combine dynamic categories with static links
     const staticLinks = [
-        { href: "/about", label: "SOBRE MÍ" },
-        { href: "/gallery", label: "GALERÍA" },
-        { href: "/index", label: "ÍNDICE" },
+        { href: "/#sobre-mi", label: "SOBRE MÍ" },
+        { href: "/#contacto", label: "CONTACTO" },
     ];
 
     const navLinks = [...categories, ...staticLinks];
 
     return (
         <>
-            <header className="fixed top-0 left-0 w-full z-50 px-4 md:px-10 py-6 flex justify-between items-start mix-blend-difference text-[#D5E8D4]">
-                {/* Left: Menu Trigger (All devices) */}
+            <header className="fixed top-0 left-0 w-full z-50 px-4 md:px-10 py-6 flex justify-between items-start mix-blend-difference text-[#637381]">
+                {/* Left: Branding */}
+                <Link
+                    href="/"
+                    onClick={() => setIsMenuOpen(false)}
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                    className="text-4xl font-reenie tracking-wider hover:text-accent transition-colors"
+                >
+                    Yanna Beato
+                </Link>
+
+                {/* Right: Menu Trigger */}
                 <button
-                    className="uppercase font-mono text-xs z-50 relative tracking-widest hover:text-accent transition-colors"
+                    className="font-reenie text-3xl md:text-4xl z-50 relative tracking-widest hover:text-accent transition-colors pt-1"
                     onClick={toggleMenu}
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
                 >
                     {isMenuOpen ? "CERRAR" : "MENÚ"}
                 </button>
-
-                {/* Logo */}
-                <div className="absolute left-1/2 -translate-x-1/2 text-center z-50">
-                    <Link
-                        href="/"
-                        className="text-2xl font-sans font-bold tracking-tighter hover:opacity-70 transition-opacity"
-                        onClick={() => setIsMenuOpen(false)}
-                    >
-                        yanna beato
-                    </Link>
-                </div>
             </header>
 
             {/* Mobile Menu Overlay */}
@@ -66,14 +65,14 @@ export default function Header({ categories = [] }: HeaderProps) {
                         initial="initial"
                         animate="animate"
                         exit="exit"
-                        className="fixed inset-0 bg-black z-40 flex flex-col justify-center items-center text-[#D5E8D4]"
+                        className="fixed inset-0 bg-black z-40 flex flex-col justify-center items-center text-[#637381]"
                     >
                         <div className="flex flex-col gap-6 text-center">
                             {navLinks.map((item) => (
                                 <Link
                                     key={item.href}
                                     href={item.href}
-                                    className="font-sans font-bold text-4xl uppercase hover:text-accent transition-colors"
+                                    className="font-reenie text-6xl hover:text-accent transition-colors"
                                     onClick={() => setIsMenuOpen(false)}
                                 >
                                     {item.label}

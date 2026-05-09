@@ -3,10 +3,11 @@
 @layer base {
   :root {
     --background: #000000;
-    --foreground: #D5E8D4; /* Light green with greenish undertone */
+    --foreground: #637381; /* Slate gray */
     --accent: #90A4AE; /* Grayish green */
-    --font-sans: var(--font-oswald);
+    --font-sans: var(--font-datatype);
     --font-mono: var(--font-inter);
+    --font-reenie: var(--font-reenie-beanie);
   }
 
   body {
@@ -36,6 +37,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-accent: var(--accent);
-  --font-sans: var(--font-oswald), sans-serif;
-  --font-mono: var(--font-inter), sans-serif;
+  --font-sans: var(--font-datatype), sans-serif;
+  --font-mono: var(--font-inter), monospace;
+  --font-reenie: var(--font-reenie-beanie), cursive;
 }

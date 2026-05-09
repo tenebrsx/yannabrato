@@ -1,27 +1,36 @@
 "use client";
 
 import "./globals.css";
-import { Inter, Oswald } from "next/font/google";
+import localFont from "next/font/local";
+import { Inter, Reenie_Beanie } from "next/font/google";
 import SmoothScroll from "@/components/SmoothScroll";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { CursorProvider } from "@/context/CursorContext";
 import Cursor from "@/components/Cursor";
-import { slugify } from "@/lib/utils";
+import InitialLoader from "@/components/InitialLoader";
+import { slugify, sortCategories } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 
 // Configure fonts
+const datatype = localFont({
+  src: "../../public/fonts/Datatype.woff2",
+  variable: "--font-datatype",
+  display: "swap",
+});
+
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
 });
 
-const oswald = Oswald({
-  variable: "--font-oswald",
+const reenieBeanie = Reenie_Beanie({
+  variable: "--font-reenie-beanie",
+  weight: "400",
   subsets: ["latin"],
   display: "swap",
 });
@@ -60,7 +69,7 @@ function RootLayoutContent({ children }: { children: React.ReactNode }) {
         const uniqueCategories = Array.from(categoryMap.entries()).map(([slug, label]) => ({
           label: label,
           href: `/${slug}`
-        })).sort((a, b) => a.label.localeCompare(b.label));
+        })).sort((a, b) => sortCategories(a.label, b.label));
 
         setCategories(uniqueCategories);
       } catch (error) {
@@ -101,9 +110,10 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${oswald.variable} antialiased bg-background text-foreground overflow-x-hidden`}
+        className={`${datatype.variable} ${inter.variable} ${reenieBeanie.variable} antialiased bg-background text-foreground overflow-x-hidden`}
         suppressHydrationWarning
       >
+        <InitialLoader />
         <RootLayoutContent>{children}</RootLayoutContent>
       </body>
     </html>

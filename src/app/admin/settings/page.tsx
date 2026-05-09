@@ -13,6 +13,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { ArrowLeft, Loader2 } from "lucide-react";
 import MediaUpload from "@/components/admin/MediaUpload";
+import { toast } from "sonner";
 
 export default function SettingsPage() {
     const [loading, setLoading] = useState(false);
@@ -49,10 +50,10 @@ export default function SettingsPage() {
             }, { merge: true });
 
             setVideoPreview(heroVideoUrl);
-            alert("¡Configuración actualizada con éxito!");
+            toast.success("¡Configuración actualizada con éxito!");
         } catch (error) {
             console.error("Error:", error);
-            alert("Error al actualizar configuración");
+            toast.error("Error al actualizar configuración");
         } finally {
             setLoading(false);
         }
@@ -66,7 +67,7 @@ export default function SettingsPage() {
                         <ArrowLeft className="h-4 w-4" />
                         Volver al Panel
                     </Link>
-                    <h1 className="text-3xl font-semibold tracking-tight text-[#D5E8D4]">Configuración</h1>
+                    <h1 className="text-3xl font-semibold tracking-tight text-[#637381]">Configuración</h1>
                     <p className="text-zinc-400 mt-1">Configura los ajustes de tu sitio</p>
                 </div>
 

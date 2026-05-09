@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Loader2, Upload, X, FileVideo } from "lucide-react";
 import { cn } from "@/lib/utils";
 import imageCompression from "browser-image-compression";
+import { toast } from "sonner";
 
 interface MediaUploadProps {
     value?: string;
@@ -106,7 +107,7 @@ export default function MediaUpload({
 
         // Validate file type
         if (!file.type.startsWith("video/") && !file.type.startsWith("image/")) {
-            alert("Por favor sube un archivo de video válido (MP4) o una imagen (GIF, JPG, PNG).");
+            toast.error("Formato no válido", { description: "Sube un archivo de video (MP4) o imagen (GIF, JPG, PNG)." });
             return;
         }
 

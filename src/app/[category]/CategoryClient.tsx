@@ -52,7 +52,7 @@ export default function CategoryClient({ category }: { category: string }) {
     return (
         <main className="min-h-screen pt-40 pb-20 px-4 md:px-10 bg-black">
             <div className="max-w-[1920px] mx-auto">
-                <h1 className="text-4xl md:text-6xl font-sans font-bold uppercase mb-20 text-[#D5E8D4]">
+                <h1 className="text-6xl md:text-9xl font-reenie mb-20 text-[#637381]">
                     {categoryTitle}
                 </h1>
 
@@ -63,7 +63,7 @@ export default function CategoryClient({ category }: { category: string }) {
                         ))}
                     </div>
                 ) : projects.length === 0 ? (
-                    <div className="text-zinc-500 text-xl">No projects found in this category.</div>
+                    <div className="text-[#637381] font-reenie text-3xl">No projects found in this category.</div>
                 ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         {projects.map((project) => (

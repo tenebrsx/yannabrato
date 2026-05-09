@@ -17,7 +17,7 @@ interface Project {
     year: string;
     thumbnail: string;
     videoUrl?: string | null;
-    credits?: { role: string; name: string }[] | null;
+    credits?: string | { role: string; name: string }[] | null;
     description?: string | null;
     createdAt?: string;
     gallery?: string[] | null;
@@ -68,7 +68,7 @@ function ProjectViewer() {
 
     if (loading) {
         return (
-            <main className="min-h-screen pt-40 pb-20 px-4 md:px-10 bg-black text-[#D5E8D4]">
+            <main className="min-h-screen pt-40 pb-20 px-4 md:px-10 bg-black text-[#637381]">
                 <div className="max-w-[1400px] mx-auto">
                     <div className="mb-20">
                         <div className="h-16 bg-zinc-800 animate-pulse rounded mb-6" />
@@ -88,20 +88,110 @@ function ProjectViewer() {
         return null;
     }
 
+    const hasMedia = Boolean(project.thumbnail || project.videoUrl || (project.gallery && project.gallery.length > 0));
+
+    if (!hasMedia) {
+        return (
+            <main className="min-h-screen pt-40 pb-20 px-4 md:px-10 bg-black text-[#637381] flex flex-col justify-center">
+                <div className="max-w-[1400px] mx-auto w-full">
+                    {/* Typographic Hero */}
+                    <div className="mb-24 md:mb-32 text-center">
+                        <motion.h1 
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8 }}
+                            className="text-7xl md:text-[10rem] font-reenie mb-8 text-white leading-none tracking-tight"
+                        >
+                            {project.title}
+                        </motion.h1>
+                        <motion.div 
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 0.8, delay: 0.2 }}
+                            className="flex justify-center items-center gap-6 font-sans text-xs md:text-sm text-zinc-500 uppercase tracking-[0.3em]"
+                        >
+                            <span>{project.category}</span>
+                            <span className="w-1 h-1 bg-zinc-700 rounded-full" />
+                            <span>{project.year}</span>
+                        </motion.div>
+                    </div>
+
+                    <div className="max-w-4xl mx-auto space-y-20">
+                        {/* Project Description */}
+                        {project.description && (
+                            <motion.div 
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.8, delay: 0.3 }}
+                                className="text-center"
+                            >
+                                <h2 className="font-reenie text-2xl text-zinc-600 tracking-widest mb-8">Punto de Vista</h2>
+                                <p className="text-xl md:text-3xl font-light leading-relaxed text-zinc-300">
+                                    {project.description}
+                                </p>
+                            </motion.div>
+                        )}
+
+                        {/* Credits Section */}
+                        {project.credits && (
+                            <motion.div 
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.8, delay: 0.4 }}
+                                className="border-t border-white/10 pt-16"
+                            >
+                                <h2 className="font-reenie text-2xl text-zinc-600 tracking-widest mb-10 text-center">Créditos</h2>
+                                
+                                {typeof project.credits === 'string' && (
+                                    <div className="flex flex-wrap justify-center gap-x-6 gap-y-4 text-[#637381] font-sans font-light text-base md:text-xl">
+                                        {(project.credits as string).split(/·|-/).map((credit, index) => (
+                                            <span key={index} className="flex items-center gap-x-6">
+                                                {credit.trim()}
+                                                {index < (project.credits as string).split(/·|-/).length - 1 && (
+                                                    <span className="text-zinc-700 select-none text-sm font-bold">·</span>
+                                                )}
+                                            </span>
+                                        ))}
+                                    </div>
+                                )}
+                                
+                                {Array.isArray(project.credits) && project.credits.length > 0 && (
+                                    <div className="grid grid-cols-2 md:grid-cols-3 gap-y-8 gap-x-10 max-w-3xl mx-auto text-center">
+                                        {project.credits.map((credit, index) => (
+                                            <div key={index} className="flex flex-col items-center">
+                                                <span className="text-[10px] md:text-xs font-sans text-zinc-500 uppercase tracking-[0.2em] mb-2">{credit.role}</span>
+                                                <span className="text-base md:text-xl font-sans font-light text-zinc-300">{credit.name}</span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                )}
+                            </motion.div>
+                        )}
+                    </div>
+
+                    <div className="mt-32">
+                        {/* Related Projects */}
+                        <RelatedProjects currentProjectId={project.id} />
+                    </div>
+                </div>
+            </main>
+        );
+    }
+
+    // Standard Layout (with Media)
     return (
-        <main className="min-h-screen pt-40 pb-20 px-4 md:px-10 bg-black text-[#D5E8D4]">
+        <main className="min-h-screen pt-40 pb-20 px-4 md:px-10 bg-black text-[#637381]">
             <div className="max-w-[1400px] mx-auto">
                 {/* Project Header */}
                 <div className="mb-20">
-                    <h1 className="text-4xl md:text-7xl font-sans font-bold uppercase mb-6">
+                    <h1 className="text-5xl md:text-8xl font-reenie mb-6">
                         {project.title}
                     </h1>
-                    <div className="flex gap-6 font-mono text-xs uppercase text-gray-500">
+                    <div className="flex gap-6 font-reenie text-xl text-gray-500">
                         <span>#{project.category}</span>
                     </div>
                 </div>
 
-                {/* YouTube Video (if available) */}
                 {/* Media Section: Video or Thumbnail */}
                 {(() => {
                     const getVideoInfo = (url: string) => {
@@ -172,10 +262,10 @@ function ProjectViewer() {
                 {project.description && (
                     <div className="grid grid-cols-1 md:grid-cols-12 gap-10">
                         <div className="md:col-span-4">
-                            <h2 className="font-mono text-xs uppercase text-gray-500 tracking-widest">Detalles</h2>
+                            <h2 className="font-reenie text-2xl text-gray-500 tracking-widest">Detalles</h2>
                         </div>
                         <div className="md:col-span-8 md:col-start-5">
-                            <p className="text-xl md:text-2xl font-light leading-relaxed">
+                            <p className="text-xl md:text-2xl font-light leading-relaxed text-zinc-300">
                                 {project.description}
                             </p>
                         </div>
@@ -183,13 +273,28 @@ function ProjectViewer() {
                 )}
 
                 {/* Credits Section */}
-                {project.credits && project.credits.length > 0 && (
+                {project.credits && typeof project.credits === 'string' && (
+                    <div className="md:col-span-8 md:col-start-5 mt-10">
+                        <div className="flex flex-wrap gap-x-6 gap-y-2 text-[#637381] font-sans font-light text-base md:text-lg">
+                            {(project.credits as string).split(/·|-/).map((credit, index) => (
+                                <span key={index} className="flex items-center gap-x-6">
+                                    {credit.trim()}
+                                    {index < (project.credits as string).split(/·|-/).length - 1 && (
+                                        <span className="text-zinc-700 select-none text-sm font-bold">·</span>
+                                    )}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+                )}
+                
+                {project.credits && Array.isArray(project.credits) && project.credits.length > 0 && (
                     <div className="md:col-span-8 md:col-start-5 mt-10">
                         <div className="grid grid-cols-2 gap-y-4 gap-x-10">
                             {project.credits.map((credit, index) => (
                                 <div key={index} className="flex flex-col">
-                                    <span className="text-xs font-mono uppercase text-zinc-500 tracking-wider mb-1">{credit.role}</span>
-                                    <span className="text-base font-light text-[#D5E8D4]">{credit.name}</span>
+                                    <span className="text-[10px] md:text-xs font-sans text-zinc-500 uppercase tracking-[0.2em] mb-1.5">{credit.role}</span>
+                                    <span className="text-base md:text-lg font-sans font-light text-[#637381]">{credit.name}</span>
                                 </div>
                             ))}
                         </div>
@@ -201,7 +306,7 @@ function ProjectViewer() {
                     <div className="mt-32 space-y-10">
                         <div className="flex items-center gap-4">
                             <span className="h-px flex-1 bg-zinc-900" />
-                            <h3 className="font-mono text-xs uppercase text-zinc-500 tracking-widest">Galería y Momentos</h3>
+                            <h3 className="font-reenie text-2xl text-zinc-500 tracking-widest">Galería y Momentos</h3>
                             <span className="h-px flex-1 bg-zinc-900" />
                         </div>
 
@@ -236,7 +341,7 @@ function ProjectViewer() {
                         >
                             <button
                                 onClick={() => setSelectedImage(null)}
-                                className="absolute top-6 right-6 text-[#D5E8D4]/50 hover:text-[#D5E8D4] transition-colors"
+                                className="absolute top-6 right-6 text-[#637381]/50 hover:text-[#637381] transition-colors"
                             >
                                 <X size={32} />
                             </button>

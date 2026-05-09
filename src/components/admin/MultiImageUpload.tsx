@@ -6,6 +6,7 @@ import { storage } from "@/lib/firebase";
 import { Loader2, Upload, X, Image as ImageIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import imageCompression from "browser-image-compression";
+import { toast } from "sonner";
 
 interface MultiImageUploadProps {
     onUpload: (urls: string[]) => void;
@@ -78,9 +79,10 @@ export default function MultiImageUpload({
 
             const urls = await Promise.all(uploadPromises);
             onUpload(urls);
+            toast.success("Imágenes subidas correctamente");
         } catch (error) {
             console.error("Error uploading images:", error);
-            alert("Error al subir algunas imágenes.");
+            toast.error("Error al subir algunas imágenes.");
         } finally {
             setLoading(false);
             setProgress(0);

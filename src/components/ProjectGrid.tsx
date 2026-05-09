@@ -6,9 +6,18 @@ interface ProjectGridProps {
 }
 
 export default function ProjectGrid({ projects }: ProjectGridProps) {
+    // Sort projects: those with thumbnails first, then those without
+    const sortedProjects = [...projects].sort((a, b) => {
+        const aHasMedia = Boolean(a.thumbnail);
+        const bHasMedia = Boolean(b.thumbnail);
+        if (aHasMedia && !bHasMedia) return -1;
+        if (!aHasMedia && bHasMedia) return 1;
+        return 0; // maintain relative order otherwise
+    });
+
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 md:gap-x-10 gap-y-12 md:gap-y-20 w-full">
-            {projects.map((project) => (
+        <div className="flex flex-col gap-y-20 md:gap-y-40 w-full max-w-4xl mx-auto px-4 md:px-0">
+            {sortedProjects.map((project) => (
                 <ProjectCard key={project.id} project={project} />
             ))}
         </div>

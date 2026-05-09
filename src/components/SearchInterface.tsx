@@ -24,7 +24,7 @@ export default function SearchInterface({ initialProjects }: SearchInterfaceProp
     }, [query, initialProjects]);
 
     return (
-        <main className="min-h-screen pt-32 pb-20 px-4 md:px-10 bg-black text-[#D5E8D4]">
+        <main className="min-h-screen pt-32 pb-20 px-4 md:px-10 bg-black text-[#637381]">
             <div className="max-w-[1920px] mx-auto">
 
                 {/* Search Input */}
@@ -37,7 +37,7 @@ export default function SearchInterface({ initialProjects }: SearchInterfaceProp
                         placeholder="BUSCAR PROYECTOS..."
                         value={query}
                         onChange={(e) => setQuery(e.target.value)}
-                        className="w-full bg-transparent border-b border-white/20 text-4xl md:text-8xl font-sans font-bold uppercase placeholder:text-gray-700 text-[#D5E8D4] focus:outline-none focus:border-accent transition-colors pb-4"
+                        className="w-full bg-transparent border-b border-white/20 text-5xl md:text-8xl font-reenie placeholder:text-gray-700 text-[#637381] focus:outline-none focus:border-accent transition-colors pb-4"
                         autoFocus
                     />
                 </div>
@@ -50,7 +50,7 @@ export default function SearchInterface({ initialProjects }: SearchInterfaceProp
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
-                            className="text-center py-20 font-mono text-gray-500 uppercase tracking-widest"
+                            className="text-center py-20 font-reenie text-2xl text-gray-500 tracking-widest"
                         >
                             No se encontraron proyectos para "{query}"
                         </motion.div>

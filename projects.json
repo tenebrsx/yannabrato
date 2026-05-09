@@ -1,0 +1,783 @@
+{
+  "documents": [
+    {
+      "name": "projects/yannabratoo/databases/(default)/documents/projects/19hvxti3RIHPxUfC7GWs",
+      "fields": {
+        "published": {
+          "booleanValue": true
+        },
+        "thumbnail": {
+          "stringValue": ""
+        },
+        "description": {
+          "stringValue": "Supervisión de participantes durante el reto. Control de tiempos y cumplimiento de lineamientos. Apoyo operativo a producción."
+        },
+        "createdAt": {
+          "timestampValue": "2026-03-10T04:08:41.384Z"
+        },
+        "credits": {
+          "stringValue": "Coordinación de Participantes"
+        },
+        "title": {
+          "stringValue": "Festival del Minuto del Agua"
+        },
+        "year": {
+          "stringValue": "2025"
+        },
+        "gallery": {
+          "arrayValue": {}
+        },
+        "videoUrl": {
+          "stringValue": ""
+        },
+        "updatedAt": {
+          "stringValue": "2026-03-14T01:46:37.051Z"
+        },
+        "slug": {
+          "stringValue": "festival-minuto-del-agua"
+        },
+        "thumbnailPoster": {
+          "stringValue": ""
+        },
+        "category": {
+          "stringValue": "Producción y gestión de proyectos audiovisuales"
+        }
+      },
+      "createTime": "2026-03-10T04:08:41.422527Z",
+      "updateTime": "2026-03-14T01:46:37.674349Z"
+    },
+    {
+      "name": "projects/yannabratoo/databases/(default)/documents/projects/1b2qTbRLdBj5r8Pa7FaG",
+      "fields": {
+        "slug": {
+          "stringValue": "premieres-cinematograficas"
+        },
+        "videoUrl": {
+          "stringValue": ""
+        },
+        "updatedAt": {
+          "stringValue": "2026-03-14T01:43:17.765Z"
+        },
+        "year": {
+          "stringValue": "2023–2025"
+        },
+        "gallery": {
+          "arrayValue": {}
+        },
+        "category": {
+          "stringValue": "Producción y gestión de proyectos audiovisuales"
+        },
+        "thumbnailPoster": {
+          "stringValue": ""
+        },
+        "thumbnail": {
+          "stringValue": "https://firebasestorage.googleapis.com/v0/b/yannabratoo.firebasestorage.app/o/thumbnails%2F1773117221948-WhatsApp%20Image%202026-03-09%20at%2000.49.25.jpeg?alt=media&token=e9076fea-2753-4b42-a353-ee07a16fed51"
+        },
+        "description": {
+          "stringValue": "Participación en premieres de las películas: Books & Drinks, La Bachata de Biónico, Carlota La Más Barrial, La Güira y La Tambora, El Beso de Dios. Coordinación y acompañamiento de talento durante eventos de estreno."
+        },
+        "published": {
+          "booleanValue": true
+        },
+        "createdAt": {
+          "timestampValue": "2026-03-10T04:08:41.098Z"
+        },
+        "credits": {
+          "stringValue": "Asistente de Producción · Coordinación de Talento"
+        },
+        "title": {
+          "stringValue": "Premieres Cinematográficas — RD"
+        }
+      },
+      "createTime": "2026-03-10T04:08:41.137902Z",
+      "updateTime": "2026-03-14T01:43:17.976792Z"
+    },
+    {
+      "name": "projects/yannabratoo/databases/(default)/documents/projects/2gf5WQzKoxegzXe9TxYz",
+      "fields": {
+        "videoUrl": {
+          "stringValue": ""
+        },
+        "updatedAt": {
+          "stringValue": "2026-03-14T01:43:17.934Z"
+        },
+        "slug": {
+          "stringValue": "dominican-film-festival-ny"
+        },
+        "gallery": {
+          "arrayValue": {}
+        },
+        "year": {
+          "stringValue": "2025"
+        },
+        "category": {
+          "stringValue": "Producción y gestión de proyectos audiovisuales"
+        },
+        "thumbnailPoster": {
+          "stringValue": ""
+        },
+        "createdAt": {
+          "timestampValue": "2026-03-10T04:08:40.673Z"
+        },
+        "published": {
+          "booleanValue": true
+        },
+        "thumbnail": {
+          "stringValue": "https://firebasestorage.googleapis.com/v0/b/yannabratoo.firebasestorage.app/o/thumbnails%2F1773116936551-WhatsApp%20Image%202026-03-09%20at%2000.39.25.jpeg?alt=media&token=7ddd1a23-9215-47f3-9cb3-b450d61d57fc"
+        },
+        "description": {
+          "stringValue": "Gestión de talento y cineastas invitados. Coordinación y ejecución de contenido digital durante el evento. Edición y publicación de piezas audiovisuales en tiempo real."
+        },
+        "title": {
+          "stringValue": "Dominican Film Festival — New York"
+        },
+        "credits": {
+          "stringValue": "Asistente de Producción"
+        }
+      },
+      "createTime": "2026-03-10T04:08:40.712254Z",
+      "updateTime": "2026-03-14T01:43:18.129455Z"
+    },
+    {
+      "name": "projects/yannabratoo/databases/(default)/documents/projects/IZt8BKKd2SzCN4Mrgc79",
+      "fields": {
+        "thumbnailPoster": {
+          "stringValue": ""
+        },
+        "category": {
+          "stringValue": "Producción y gestión de proyectos audiovisuales"
+        },
+        "gallery": {
+          "arrayValue": {}
+        },
+        "year": {
+          "stringValue": "2025"
+        },
+        "videoUrl": {
+          "stringValue": ""
+        },
+        "updatedAt": {
+          "stringValue": "2026-03-14T01:46:40.697Z"
+        },
+        "slug": {
+          "stringValue": "premios-adopresci"
+        },
+        "title": {
+          "stringValue": "Premios ADOPRESCI"
+        },
+        "credits": {
+          "stringValue": "Asistente de Producción · Coordinación de Talento"
+        },
+        "createdAt": {
+          "timestampValue": "2026-03-10T04:08:41.238Z"
+        },
+        "published": {
+          "booleanValue": true
+        },
+        "thumbnail": {
+          "stringValue": ""
+        },
+        "description": {
+          "stringValue": "Coordinación y acompañamiento de nominados e invitados. Enlace entre talento y producción en backstage. Apoyo en ejecución logística durante premiación en vivo."
+        }
+      },
+      "createTime": "2026-03-10T04:08:41.275244Z",
+      "updateTime": "2026-03-14T01:46:40.966300Z"
+    },
+    {
+      "name": "projects/yannabratoo/databases/(default)/documents/projects/cd9MrLXB1lwaW0nMAXab",
+      "fields": {
+        "gallery": {
+          "arrayValue": {}
+        },
+        "year": {
+          "stringValue": "2022"
+        },
+        "slug": {
+          "stringValue": "popstar-drake"
+        },
+        "updatedAt": {
+          "stringValue": "2026-03-14T01:46:42.914Z"
+        },
+        "videoUrl": {
+          "stringValue": ""
+        },
+        "category": {
+          "stringValue": "Videoclips conceptuales"
+        },
+        "thumbnailPoster": {
+          "stringValue": ""
+        },
+        "published": {
+          "booleanValue": true
+        },
+        "description": {
+          "stringValue": "Videoclip conceptual de autoría propia, integrando narrativa cinematográfica y composición coreográfica."
+        },
+        "thumbnail": {
+          "stringValue": ""
+        },
+        "createdAt": {
+          "timestampValue": "2026-03-10T04:08:40.522Z"
+        },
+        "credits": {
+          "stringValue": "Dirección General · Producción · Coreografía"
+        },
+        "title": {
+          "stringValue": "Popstar — Drake"
+        }
+      },
+      "createTime": "2026-03-10T04:08:40.563409Z",
+      "updateTime": "2026-03-14T01:46:43.162675Z"
+    },
+    {
+      "name": "projects/yannabratoo/databases/(default)/documents/projects/cxFcQRQfVHopxSg8I9NR",
+      "fields": {
+        "year": {
+          "stringValue": "2023"
+        },
+        "gallery": {
+          "arrayValue": {}
+        },
+        "slug": {
+          "stringValue": "issade-live-performance"
+        },
+        "videoUrl": {
+          "stringValue": ""
+        },
+        "updatedAt": {
+          "stringValue": "2026-03-14T01:46:44.881Z"
+        },
+        "thumbnailPoster": {
+          "stringValue": ""
+        },
+        "category": {
+          "stringValue": "Dirección creativa & coreografía"
+        },
+        "published": {
+          "booleanValue": true
+        },
+        "thumbnail": {
+          "stringValue": ""
+        },
+        "description": {
+          "stringValue": "Coreografía para la presentación en vivo de la artista Issade."
+        },
+        "createdAt": {
+          "timestampValue": "2026-03-10T04:08:40.228Z"
+        },
+        "credits": {
+          "stringValue": "Coreografía"
+        },
+        "title": {
+          "stringValue": "Issade — Live Performance"
+        }
+      },
+      "createTime": "2026-03-10T04:08:40.267504Z",
+      "updateTime": "2026-03-14T01:46:45.132360Z"
+    },
+    {
+      "name": "projects/yannabratoo/databases/(default)/documents/projects/dqnYG4qZHc1liXE7qi7b",
+      "fields": {
+        "credits": {
+          "stringValue": "Directora de Casting"
+        },
+        "title": {
+          "stringValue": "REVÊS — Cortometraje"
+        },
+        "published": {
+          "booleanValue": true
+        },
+        "thumbnail": {
+          "stringValue": "https://firebasestorage.googleapis.com/v0/b/yannabratoo.firebasestorage.app/o/thumbnails%2F1773116979683-WhatsApp%20Image%202026-03-09%20at%2000.54.04.jpeg?alt=media&token=08b7da74-90c1-4785-aba5-331792bb7995"
+        },
+        "description": {
+          "stringValue": "Diseño del proceso de selección de actores. Evaluación de perfiles acorde a la narrativa del proyecto. Acompañamiento en construcción de personajes."
+        },
+        "createdAt": {
+          "timestampValue": "2026-03-10T04:08:41.527Z"
+        },
+        "category": {
+          "stringValue": "Casting"
+        },
+        "thumbnailPoster": {
+          "stringValue": ""
+        },
+        "gallery": {
+          "arrayValue": {}
+        },
+        "year": {
+          "stringValue": "2025–2026"
+        },
+        "updatedAt": {
+          "stringValue": "2026-03-14T01:43:18.686Z"
+        },
+        "videoUrl": {
+          "stringValue": ""
+        },
+        "slug": {
+          "stringValue": "reves-cortometraje"
+        }
+      },
+      "createTime": "2026-03-10T04:08:41.561870Z",
+      "updateTime": "2026-03-14T01:43:18.897372Z"
+    },
+    {
+      "name": "projects/yannabratoo/databases/(default)/documents/projects/fCoJo7tUNLto0rzAVMOR",
+      "fields": {
+        "slug": {
+          "stringValue": "ego-lovers-rd"
+        },
+        "updatedAt": {
+          "stringValue": "2026-03-14T01:43:18.862Z"
+        },
+        "videoUrl": {
+          "stringValue": ""
+        },
+        "year": {
+          "stringValue": "2024"
+        },
+        "gallery": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "https://firebasestorage.googleapis.com/v0/b/yannabratoo.firebasestorage.app/o/gallery%2F1773117083957-WhatsApp%20Image%202026-03-08%20at%2023.57.35%20(1).jpeg?alt=media&token=c7f89fc3-6f12-4952-8d9c-d81730cc23ac"
+              },
+              {
+                "stringValue": "https://firebasestorage.googleapis.com/v0/b/yannabratoo.firebasestorage.app/o/gallery%2F1773117083949-WhatsApp%20Image%202026-03-08%20at%2023.57.35.jpeg?alt=media&token=7b6ede2d-f210-42aa-b487-4c95a48f75b1"
+              },
+              {
+                "stringValue": "https://firebasestorage.googleapis.com/v0/b/yannabratoo.firebasestorage.app/o/gallery%2F1773117095673-WhatsApp%20Image%202026-03-08%20at%2023.57.35%20(2).jpeg?alt=media&token=9e6b327c-2be2-4966-b70d-90432f17feb4"
+              }
+            ]
+          }
+        },
+        "thumbnailPoster": {
+          "stringValue": ""
+        },
+        "category": {
+          "stringValue": "Dirección creativa & coreografía"
+        },
+        "published": {
+          "booleanValue": true
+        },
+        "thumbnail": {
+          "stringValue": "https://firebasestorage.googleapis.com/v0/b/yannabratoo.firebasestorage.app/o/thumbnails%2F1773117091241-WhatsApp%20Image%202026-03-08%20at%2023.57.34.jpeg?alt=media&token=03530a71-62a6-40cb-8a05-cb4f1435a03c"
+        },
+        "description": {
+          "stringValue": "Desarrollo del concepto visual de la campaña, desde la creación de moodboards y diseño de set y vestuario hasta la dirección de poses y lenguaje corporal durante la sesión fotográfica."
+        },
+        "createdAt": {
+          "timestampValue": "2026-03-10T04:08:39.996Z"
+        },
+        "credits": {
+          "stringValue": "Directora Creativa · Dirección de Movimiento"
+        },
+        "title": {
+          "stringValue": "Ego Lovers RD"
+        }
+      },
+      "createTime": "2026-03-10T04:08:40.110413Z",
+      "updateTime": "2026-03-14T01:43:19.087803Z"
+    },
+    {
+      "name": "projects/yannabratoo/databases/(default)/documents/projects/gNz36bduZUC7QmIzHBLT",
+      "fields": {
+        "credits": {
+          "stringValue": "Pasante de Producción"
+        },
+        "title": {
+          "stringValue": "Dominicanas Got Talent"
+        },
+        "thumbnail": {
+          "stringValue": "https://firebasestorage.googleapis.com/v0/b/yannabratoo.firebasestorage.app/o/thumbnails%2F1773116905789-WhatsApp%20Image%202026-03-09%20at%2000.40.59.jpeg?alt=media&token=433fed44-b925-44f6-86cd-aff281519b72"
+        },
+        "description": {
+          "stringValue": "Apoyo en logística y coordinación de talentos. Designada como responsable de supervisar y gestionar necesidades de talentos del grupo de baile DNI, conformado por 85 bailarines."
+        },
+        "published": {
+          "booleanValue": true
+        },
+        "createdAt": {
+          "timestampValue": "2026-03-10T04:08:40.817Z"
+        },
+        "category": {
+          "stringValue": "Producción y gestión de proyectos audiovisuales"
+        },
+        "thumbnailPoster": {
+          "stringValue": ""
+        },
+        "year": {
+          "stringValue": "2026"
+        },
+        "gallery": {
+          "arrayValue": {}
+        },
+        "slug": {
+          "stringValue": "dominicanas-got-talent"
+        },
+        "updatedAt": {
+          "stringValue": "2026-03-14T01:43:19.049Z"
+        },
+        "videoUrl": {
+          "stringValue": ""
+        }
+      },
+      "createTime": "2026-03-10T04:08:40.958980Z",
+      "updateTime": "2026-03-14T01:43:19.220846Z"
+    },
+    {
+      "name": "projects/yannabratoo/databases/(default)/documents/projects/jVxvclAGu7qv5GS6728F",
+      "fields": {
+        "thumbnail": {
+          "stringValue": "https://firebasestorage.googleapis.com/v0/b/yannabratoo.firebasestorage.app/o/thumbnails%2F1773113155262-e2dd2db0-b663-4fde-9d8c-1bfb4dd0f895.mp4?alt=media&token=39c50c30-a2d8-422a-bcfc-fe751a894787"
+        },
+        "description": {
+          "stringValue": "Desarrollo de videoclip conceptual de autoría propia, integrando narrativa cinematográfica y composición coreográfica con liderazgo del proceso de producción y postproducción."
+        },
+        "published": {
+          "booleanValue": true
+        },
+        "updatedAt": {
+          "stringValue": "2026-03-14T01:43:19.207Z"
+        },
+        "videoUrl": {
+          "stringValue": "https://www.youtube.com/watch?v=ZdUxn5SZWeo"
+        },
+        "slug": {
+          "stringValue": "how-do-you-sleep"
+        },
+        "createdAt": {
+          "timestampValue": "2026-03-10T03:31:10.328Z"
+        },
+        "gallery": {
+          "arrayValue": {}
+        },
+        "thumbnailPoster": {
+          "stringValue": "https://firebasestorage.googleapis.com/v0/b/yannabratoo.firebasestorage.app/o/thumbnails%2Fposter-1773113155407.jpg?alt=media&token=13b6c308-e271-421f-9a7c-844d61c7b952"
+        },
+        "credits": {
+          "stringValue": "Dirección General · Producción · Coreografía"
+        },
+        "category": {
+          "stringValue": "Videoclips conceptuales"
+        },
+        "title": {
+          "stringValue": "how do you sleep"
+        }
+      },
+      "createTime": "2026-03-10T03:31:10.393467Z",
+      "updateTime": "2026-03-14T01:43:19.423257Z"
+    },
+    {
+      "name": "projects/yannabratoo/databases/(default)/documents/projects/mQ6wOYgMxnNE106ScHQd",
+      "fields": {
+        "description": {
+          "stringValue": "Videoclip conceptual de autoría propia, integrando narrativa cinematográfica y composición coreográfica."
+        },
+        "published": {
+          "booleanValue": true
+        },
+        "thumbnail": {
+          "stringValue": "https://firebasestorage.googleapis.com/v0/b/yannabratoo.firebasestorage.app/o/thumbnails%2F1773112701024-437aafd8-00ea-45f1-ae23-ac2016293299.mp4?alt=media&token=f922b0de-030f-477b-812f-5d79dc617014"
+        },
+        "videoUrl": {
+          "stringValue": "https://www.youtube.com/watch?v=sOhQLT0gQ0M"
+        },
+        "updatedAt": {
+          "stringValue": "2026-03-14T01:43:19.381Z"
+        },
+        "slug": {
+          "stringValue": "bokete"
+        },
+        "createdAt": {
+          "timestampValue": "2026-03-10T03:18:33.741Z"
+        },
+        "gallery": {
+          "arrayValue": {}
+        },
+        "credits": {
+          "stringValue": "Dirección General · Producción · Coreografía"
+        },
+        "category": {
+          "stringValue": "Videoclips conceptuales"
+        },
+        "title": {
+          "stringValue": "BOKETE"
+        },
+        "thumbnailPoster": {
+          "stringValue": "https://firebasestorage.googleapis.com/v0/b/yannabratoo.firebasestorage.app/o/thumbnails%2Fposter-1773112701122.jpg?alt=media&token=26c7bb56-bea2-47a2-b0ed-67b69830f57f"
+        }
+      },
+      "createTime": "2026-03-10T03:18:33.808784Z",
+      "updateTime": "2026-03-14T01:43:19.574389Z"
+    },
+    {
+      "name": "projects/yannabratoo/databases/(default)/documents/projects/mqhLaoNRHx6MTlARBESn",
+      "fields": {
+        "credits": {
+          "stringValue": "Asistente en Procesos de Postproducción"
+        },
+        "title": {
+          "stringValue": "Caribbean Cinemas — Postproducción"
+        },
+        "published": {
+          "booleanValue": true
+        },
+        "description": {
+          "stringValue": "Formación práctica en procesos profesionales de montaje de largometrajes dominicanos junto al editor José Delio. Proyectos trabajados: De Tal Palo, Medias Hermanas."
+        },
+        "thumbnail": {
+          "stringValue": ""
+        },
+        "createdAt": {
+          "timestampValue": "2026-03-10T04:08:41.667Z"
+        },
+        "category": {
+          "stringValue": "Postproducción"
+        },
+        "thumbnailPoster": {
+          "stringValue": ""
+        },
+        "slug": {
+          "stringValue": "caribbean-cinemas-postproduccion"
+        },
+        "updatedAt": {
+          "stringValue": "2026-03-14T01:46:49.447Z"
+        },
+        "videoUrl": {
+          "stringValue": ""
+        },
+        "gallery": {
+          "arrayValue": {}
+        },
+        "year": {
+          "stringValue": "2025"
+        }
+      },
+      "createTime": "2026-03-10T04:08:41.707Z",
+      "updateTime": "2026-03-14T01:46:49.691828Z"
+    },
+    {
+      "name": "projects/yannabratoo/databases/(default)/documents/projects/mud3rC2ymliMfx1YWw2f",
+      "fields": {
+        "thumbnailPoster": {
+          "stringValue": "https://firebasestorage.googleapis.com/v0/b/yannabratoo.firebasestorage.app/o/thumbnails%2Fposter-1773111554712.jpg?alt=media&token=fa74a4ec-1a71-45bb-974b-1b79f6d991ea"
+        },
+        "title": {
+          "stringValue": "BAILE INOLVIDABLE"
+        },
+        "category": {
+          "stringValue": "Videoclips conceptuales"
+        },
+        "credits": {
+          "stringValue": "Dirección General · Producción · Coreografía"
+        },
+        "createdAt": {
+          "timestampValue": "2026-03-10T03:12:41.783Z"
+        },
+        "gallery": {
+          "arrayValue": {}
+        },
+        "slug": {
+          "stringValue": "baile-inolvidable"
+        },
+        "updatedAt": {
+          "stringValue": "2026-03-14T01:43:19.719Z"
+        },
+        "videoUrl": {
+          "stringValue": "https://www.youtube.com/watch?v=_pe6qRHnFE4"
+        },
+        "description": {
+          "stringValue": "Videoclip conceptual de autoría propia, basado en la canción completa, integrando narrativa cinematográfica y composición coreográfica."
+        },
+        "published": {
+          "booleanValue": true
+        },
+        "thumbnail": {
+          "stringValue": "https://firebasestorage.googleapis.com/v0/b/yannabratoo.firebasestorage.app/o/thumbnails%2F1773111554515-9610acb4-fdb0-4c49-bc5a-0207fd0d710f.mp4?alt=media&token=4a9f4a1f-a3d1-430b-84dd-517abd47e961"
+        }
+      },
+      "createTime": "2026-03-10T03:12:41.857400Z",
+      "updateTime": "2026-03-14T01:43:19.907388Z"
+    },
+    {
+      "name": "projects/yannabratoo/databases/(default)/documents/projects/oKalHmpB4rQgNO6J9Ncl",
+      "fields": {
+        "createdAt": {
+          "timestampValue": "2026-03-10T04:08:40.374Z"
+        },
+        "thumbnail": {
+          "stringValue": ""
+        },
+        "published": {
+          "booleanValue": true
+        },
+        "description": {
+          "stringValue": "Videoclip conceptual de autoría propia, integrando narrativa cinematográfica y composición coreográfica."
+        },
+        "title": {
+          "stringValue": "Tití Me Preguntó"
+        },
+        "credits": {
+          "stringValue": "Dirección General · Producción · Coreografía"
+        },
+        "updatedAt": {
+          "stringValue": "2026-03-14T01:46:51.765Z"
+        },
+        "videoUrl": {
+          "stringValue": ""
+        },
+        "slug": {
+          "stringValue": "titi-me-pregunto"
+        },
+        "gallery": {
+          "arrayValue": {}
+        },
+        "year": {
+          "stringValue": "2022"
+        },
+        "category": {
+          "stringValue": "Videoclips conceptuales"
+        },
+        "thumbnailPoster": {
+          "stringValue": ""
+        }
+      },
+      "createTime": "2026-03-10T04:08:40.415641Z",
+      "updateTime": "2026-03-14T01:46:52.005064Z"
+    },
+    {
+      "name": "projects/yannabratoo/databases/(default)/documents/projects/oSfYMSOmYQGm2YVjXPT3",
+      "fields": {
+        "updatedAt": {
+          "stringValue": "2026-03-14T01:43:20.024Z"
+        },
+        "videoUrl": {
+          "stringValue": "https://youtu.be/n3HM6neiGBY"
+        },
+        "slug": {
+          "stringValue": "where-she-goes"
+        },
+        "gallery": {
+          "arrayValue": {}
+        },
+        "createdAt": {
+          "timestampValue": "2026-03-10T03:36:30.394Z"
+        },
+        "published": {
+          "booleanValue": true
+        },
+        "thumbnail": {
+          "stringValue": "https://firebasestorage.googleapis.com/v0/b/yannabratoo.firebasestorage.app/o/thumbnails%2F1773118197010-9942fed2-e2c5-467c-b9ef-13798aa3be30.mp4?alt=media&token=cff52d0f-7c25-495d-8ddf-8b81aa4bc88e"
+        },
+        "description": {
+          "stringValue": "Videoclip conceptual de autoría propia, integrando narrativa cinematográfica y composición coreográfica."
+        },
+        "title": {
+          "stringValue": "where she goes"
+        },
+        "credits": {
+          "stringValue": "Dirección General · Producción · Coreografía"
+        },
+        "category": {
+          "stringValue": "Videoclips conceptuales"
+        },
+        "thumbnailPoster": {
+          "stringValue": "https://firebasestorage.googleapis.com/v0/b/yannabratoo.firebasestorage.app/o/thumbnails%2Fposter-1773118197192.jpg?alt=media&token=133aada4-94cc-44bc-9185-68a6e242343c"
+        }
+      },
+      "createTime": "2026-03-10T03:36:30.452164Z",
+      "updateTime": "2026-03-14T01:43:20.216392Z"
+    },
+    {
+      "name": "projects/yannabratoo/databases/(default)/documents/projects/yFFYDdFLZ7OFcjuoIjpq",
+      "fields": {
+        "thumbnailPoster": {
+          "stringValue": ""
+        },
+        "category": {
+          "stringValue": "Postproducción"
+        },
+        "year": {
+          "stringValue": "2024"
+        },
+        "gallery": {
+          "arrayValue": {}
+        },
+        "slug": {
+          "stringValue": "documental-bts"
+        },
+        "updatedAt": {
+          "stringValue": "2026-03-14T01:46:54.566Z"
+        },
+        "videoUrl": {
+          "stringValue": ""
+        },
+        "credits": {
+          "stringValue": "Dirección · Filmación · Montaje"
+        },
+        "title": {
+          "stringValue": "Documental Behind the Scenes"
+        },
+        "description": {
+          "stringValue": "Dirección, filmación y montaje de pieza documental behind the scenes sobre el proceso creativo de un video conceptual coreográfico."
+        },
+        "thumbnail": {
+          "stringValue": ""
+        },
+        "published": {
+          "booleanValue": true
+        },
+        "createdAt": {
+          "timestampValue": "2026-03-10T04:08:51.226Z"
+        }
+      },
+      "createTime": "2026-03-10T04:08:51.264243Z",
+      "updateTime": "2026-03-14T01:46:54.869163Z"
+    },
+    {
+      "name": "projects/yannabratoo/databases/(default)/documents/projects/yghaGD3KFeEwYu1w3WlM",
+      "fields": {
+        "thumbnailPoster": {
+          "stringValue": ""
+        },
+        "title": {
+          "stringValue": "La Combi Versace — Rosalía & Tokischa"
+        },
+        "category": {
+          "stringValue": "Videoclips conceptuales"
+        },
+        "credits": {
+          "stringValue": "Dirección General · Producción · Coreografía"
+        },
+        "createdAt": {
+          "stringValue": "2026-03-14T01:43:05.488Z"
+        },
+        "year": {
+          "stringValue": "2022"
+        },
+        "updatedAt": {
+          "stringValue": "2026-03-14T01:43:05.488Z"
+        },
+        "videoUrl": {
+          "nullValue": null
+        },
+        "slug": {
+          "stringValue": "la-combi-versace"
+        },
+        "description": {
+          "stringValue": "Videoclip conceptual de autoría propia, basado en la canción completa de Rosalía & Tokischa, integrando narrativa cinematográfica y composición coreográfica."
+        },
+        "published": {
+          "booleanValue": true
+        },
+        "thumbnail": {
+          "stringValue": ""
+        }
+      },
+      "createTime": "2026-03-14T01:43:20.598146Z",
+      "updateTime": "2026-03-14T01:43:20.598146Z"
+    }
+  ]
+}

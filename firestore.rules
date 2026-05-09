@@ -22,9 +22,10 @@ service cloud.firestore {
       allow write: if isWhitelisted();
     }
     
-    // Settings collection - only whitelisted admins can read/write
+    // Settings collection - public read (hero video needed on homepage), only whitelisted admins can write
     match /settings/{settingId} {
-      allow read, write: if isWhitelisted();
+      allow read: if true;
+      allow write: if isWhitelisted();
     }
   }
 }
